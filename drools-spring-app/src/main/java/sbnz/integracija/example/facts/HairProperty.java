@@ -11,7 +11,7 @@ public class HairProperty implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private HairSoftness hairSoftness;
-	private HairTickness hairTickness;
+	private HairWeakness hairWeakness;
 	private boolean hairVolume;
 	private boolean tangling;
 	private boolean hairShine;
@@ -20,11 +20,11 @@ public class HairProperty implements Serializable{
 	private boolean fragile;
 	
 	
-	public HairProperty(HairSoftness hairSoftness, HairTickness hairTickness, boolean hairVolume, boolean tangling,
+	public HairProperty(HairSoftness hairSoftness, HairWeakness hairWeakness, boolean hairVolume, boolean tangling,
 			boolean hairShine, boolean dry, boolean inflating, boolean fragile) {
 		super();
 		this.hairSoftness = hairSoftness;
-		this.hairTickness = hairTickness;
+		this.hairWeakness = hairWeakness;
 		this.hairVolume = hairVolume;
 		this.tangling = tangling;
 		this.hairShine = hairShine;
@@ -49,14 +49,6 @@ public class HairProperty implements Serializable{
 	}
 
 
-	public HairTickness getHairTickness() {
-		return hairTickness;
-	}
-
-
-	public void setHairTickness(HairTickness hairTickness) {
-		this.hairTickness = hairTickness;
-	}
 
 
 	public boolean isHairVolume() {
@@ -119,12 +111,16 @@ public class HairProperty implements Serializable{
 	}
 
 
-	@Override
-	public String toString() {
-		return "HairProperty [hairSoftness=" + hairSoftness + ", hairTickness=" + hairTickness + ", hairVolume="
-				+ hairVolume + ", tangling=" + tangling + ", hairShine=" + hairShine + ", dry=" + dry + ", inflating="
-				+ inflating + ", fragile=" + fragile + "]";
+	public HairWeakness getHairWeakness() {
+		return hairWeakness;
 	}
+
+
+	public void setHairWeakness(HairWeakness hairWeakness) {
+		this.hairWeakness = hairWeakness;
+	}
+
+
 	
 	
 	

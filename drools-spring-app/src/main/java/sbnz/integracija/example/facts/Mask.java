@@ -1,7 +1,9 @@
 package sbnz.integracija.example.facts;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Mask extends Preparation implements Serializable{
 
@@ -10,22 +12,35 @@ public class Mask extends Preparation implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private List<Component> components;
+	private List<String> components;
+	private PehValues pehValues;
 	
-	public Mask(String name, Review review, List<Component> components) {
+	public Mask(String name, Review review, PehValues pehValues) {
 		super(name, review);
-		this.components = components;
+		this.components = new ArrayList<String>();
+		this.pehValues = pehValues;
 	}
+	
+	
+	public PehValues getPehValues() {
+		return pehValues;
+	}
+
+
+	public void setPehValues(PehValues pehValues) {
+		this.pehValues = pehValues;
+	}
+
 
 	public Mask() {
 		super();
 	}
 
-	public List<Component> getComponents() {
+	public List<String> getComponents() {
 		return components;
 	}
 
-	public void setComponents(List<Component> components) {
+	public void setComponents(List<String> components) {
 		this.components = components;
 	}
 
@@ -34,5 +49,6 @@ public class Mask extends Preparation implements Serializable{
 		return "Mask [components=" + components + "]";
 	}
 
+	
 	
 }

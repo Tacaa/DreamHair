@@ -1,0 +1,163 @@
+package sbnz.integracija;
+
+import sbnz.integracija.example.facts.*;
+import sbnz.integracija.example.enums.*;
+
+
+rule "Consequences of low porosoty"
+	when
+		$hair: Hair(hairPorosity==Porosity.LOW) 
+		$property: HairProperty(hairVolume == false, tangling == false, hairShine == false, dry == false, inflating == false, fragile == false)
+	then
+		$property.setHairShine(true);
+		update($property);
+end
+
+
+rule "Consequences of medium porosoty"
+	when
+		$hair: Hair(hairPorosity==Porosity.MEDIUM) 
+		$property: HairProperty(hairVolume == false, tangling == false, hairShine == false, dry == false, inflating == false, fragile == false)
+	then
+		$property.setHairVolume(true);
+		$property.setTangling(true);
+		$property.setHairShine(true);
+		$property.setInflating(true);
+		update($property);
+end
+
+
+rule "Consequences of high porosoty"
+	when
+		$hair: Hair(hairPorosity==Porosity.HIGH) 
+		$property: HairProperty(hairVolume == false, tangling == false, hairShine == false, dry == false, inflating == false, fragile == false)
+	then
+		$property.setHairVolume(true);
+		$property.setTangling(true);
+		$property.setFragile(true);
+		$property.setInflating(true);
+		$property.setDry(true);
+		update($property);
+end
+
+
+rule "Define extremely soft hair"
+    when
+		$property: HairProperty(hairSoftness == HairSoftness.NA)
+       	$input: UserInput(hairShape == HairShape.A1 || hairShape == HairShape.A2)
+    then
+    	$property.setHairSoftness(HairSoftness.EXTREMELY_SOFT);
+        update($property);
+end
+
+
+rule "Define soft hair"
+    when
+		$property: HairProperty(hairSoftness == HairSoftness.NA)
+       	$input: UserInput(hairShape == HairShape.B1 || hairShape == HairShape.B2 || hairShape == HairShape.A3)
+    then
+    	$property.setHairSoftness(HairSoftness.SOFT);
+        update($property);
+end
+
+
+
+rule "Define coarse hair"
+    when
+		$property: HairProperty(hairSoftness == HairSoftness.NA)
+       	$input: UserInput(hairShape == HairShape.C1 || hairShape == HairShape.C2 || hairShape == HairShape.B3 || hairShape == HairShape.C3 || hairShape == HairShape.A4)
+    then
+    	$property.setHairSoftness(HairSoftness.COARSE);
+        update($property);
+end
+
+
+
+
+
+rule "Define weak hair "
+	when 
+		$property: HairProperty(hairWeakness == HairWeakness.NA)
+		$input: UserInput($hairTickness: hairTickness, $hairShape: hairShape, $hairDensity:hairDensity)
+		
+		Number($value1: intValue) from accumulate(
+        	HairShape($t: this, this == HairShape.A1 || this == HairShape.A2) from $hairShape,
+        	count($t)
+        )
+        
+        Number($value2: intValue) from accumulate(
+        	HairTickness($t: this, this == HairTickness.THIN) from $hairTickness,
+        	count($t)
+        )
+        
+        Number($value3: intValue) from accumulate(
+        	HairDensity($t: this, this == HairDensity.SPARSE) from $hairDensity,
+        	count($t)
+        )
+        
+        eval(($value1 + $value2 + $value3) >= 2)
+	then
+		$property.setHairWeakness(HairWeakness.WEAK);
+		update($property);
+end
+
+
+
+
+
+rule "Define NORMAL hair "
+	when 
+		$property: HairProperty(hairWeakness == HairWeakness.NA)
+		$input: UserInput($hairTickness: hairTickness, $hairShape: hairShape, $hairDensity:hairDensity)
+		
+		Number($value1: intValue) from accumulate(
+        	HairShape($t: this, this == HairShape.B1 || this == HairShape.B2 || this == HairShape.C1) from $hairShape,
+        	count($t)
+        )
+        
+        Number($value2: intValue) from accumulate(
+        	HairTickness($t: this, this == HairTickness.MEDIUM_THICK) from $hairTickness,
+        	count($t)
+        )
+        
+        Number($value3: intValue) from accumulate(
+        	HairDensity($t: this, this == HairDensity.MEDIUM_DENSE) from $hairDensity,
+        	count($t)
+        )
+        
+        eval(($value1 + $value2 + $value3) >= 2)
+	then
+		$property.setHairWeakness(HairWeakness.NORMAL);
+		update($property);
+end
+
+
+
+
+
+
+rule "Define STRONG hair "
+	when 
+		$property: HairProperty(hairWeakness == HairWeakness.NA)
+		$input: UserInput($hairTickness: hairTickness, $hairShape: hairShape, $hairDensity:hairDensity)
+		
+		Number($value1: intValue) from accumulate(
+        	HairShape($t: this, this == HairShape.C2 || this == HairShape.A3 || this == HairShape.B3 || this == HairShape.C3 || this == HairShape.A4) from $hairShape,
+        	count($t)
+        )
+        
+        Number($value2: intValue) from accumulate(
+        	HairTickness($t: this, this == HairTickness.THICK) from $hairTickness,
+        	count($t)
+        )
+        
+        Number($value3: intValue) from accumulate(
+        	HairDensity($t: this, this == HairDensity.DENSE) from $hairDensity,
+        	count($t)
+        )
+        
+        eval(($value1 + $value2 + $value3) >= 2)
+	then
+		$property.setHairWeakness(HairWeakness.STRONG);
+		update($property);
+end

@@ -14,13 +14,15 @@ public class Hair implements Serializable{
 	private UserInput userInput; 
 	private HairProperty hairProperty;
 	private Porosity hairPorosity;
+	private PehValues pehValues;
 	
 	
-	public Hair(UserInput userInput, HairProperty hairProperty, Porosity hairPorosity) {
+	public Hair(UserInput userInput, HairProperty hairProperty, Porosity hairPorosity, PehValues pehValues) {
 		super();
 		this.userInput = userInput;
 		this.hairProperty = hairProperty;
 		this.hairPorosity = hairPorosity;
+		this.pehValues = pehValues;
 	}
 
 
@@ -59,11 +61,22 @@ public class Hair implements Serializable{
 	}
 
 
+	public PehValues getPehValues() {
+		return pehValues;
+	}
+
+
+	public void setPehValues(PehValues pehValues) {
+		this.pehValues = pehValues;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Hair [userInput=" + userInput + ", hairProperty=" + hairProperty + ", hairPorosity=" + hairPorosity
-				+ "]";
+				+ ", pehValues=" + pehValues + "]";
 	}
+
 	
 	
 	

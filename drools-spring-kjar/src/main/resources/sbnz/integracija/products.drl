@@ -1,0 +1,102 @@
+package sbnz.integracija;
+
+import sbnz.integracija.example.facts.*;
+import sbnz.integracija.example.enums.*;
+import java.util.List;
+import java.util.ArrayList;
+
+
+rule "Recommend oils"
+	when
+		$hair: Hair($hairPorosity : hairPorosity != Porosity.NA) 
+		$preparation: Preparations(oils.size == 0)
+		$recommendedOils : ArrayList()
+              from collect( Oil( type ==  $hairPorosity) )
+	then
+		$preparation.setOils($recommendedOils);
+		update($preparation)
+		
+end
+
+
+
+rule "Recommend mask"
+	no-loop true 
+	when
+		$peh: PehValues($proteinsPercentage: proteinsPercentage != -1, $emollientsPercentage: emollientsPercentage != -1, $humectansPercentage: humectansPercentage != -1)
+		$preparation: Preparations(masks.size == 0)
+		$recommendedMasks : ArrayList()
+              from collect( Mask( pehValues.proteinsPercentage >= $proteinsPercentage - 2 && pehValues.proteinsPercentage <= $proteinsPercentage + 2 &&
+              					pehValues.humectansPercentage >= $humectansPercentage - 2 && pehValues.humectansPercentage <= $humectansPercentage + 2 &&
+              					pehValues.emollientsPercentage >= $emollientsPercentage - 2 && pehValues.emollientsPercentage <= $emollientsPercentage + 2))
+	then
+		System.out.println($peh);
+		System.out.println("lista maskica je ---> " + $recommendedMasks.size());
+		$preparation.setMasks($recommendedMasks);
+		update($preparation)
+		
+end
+
+
+
+
+rule "Recommend regenerators"
+	no-loop true 
+	when
+		$peh: PehValues($proteinsPercentage: proteinsPercentage != -1, $emollientsPercentage: emollientsPercentage != -1, $humectansPercentage: humectansPercentage != -1)
+		$preparation: Preparations(regenerators.size == 0)
+		$recommendedRegs : ArrayList()
+              from collect( Regenerator( pehValues.proteinsPercentage >= $proteinsPercentage - 2 && pehValues.proteinsPercentage <= $proteinsPercentage + 2 &&
+              					pehValues.humectansPercentage >= $humectansPercentage - 2 && pehValues.humectansPercentage <= $humectansPercentage + 2 &&
+              					pehValues.emollientsPercentage >= $emollientsPercentage - 2 && pehValues.emollientsPercentage <= $emollientsPercentage + 2) )
+	then
+		System.out.println("lista regeneratora je ---> " + $recommendedRegs.size());
+		$preparation.setRegenerators($recommendedRegs);
+		update($preparation)
+end
+
+
+
+
+
+rule "Recommend daily shampoo"
+	no-loop true 
+	when
+		$scalp: Scalp($scalpType: scalpType)
+		$peh: PehValues($proteinsPercentage: proteinsPercentage != -1, $emollientsPercentage: emollientsPercentage != -1, $humectansPercentage: humectansPercentage != -1)
+		$preparation: Preparations(dailyShampoos.size == 0)
+		$recommendedDS : ArrayList()
+              from collect( DailyShampoo( pehValues.proteinsPercentage >= $proteinsPercentage - 2 && pehValues.proteinsPercentage <= $proteinsPercentage + 2 &&
+              					pehValues.humectansPercentage >= $humectansPercentage - 2 && pehValues.humectansPercentage <= $humectansPercentage + 2 &&
+              					pehValues.emollientsPercentage >= $emollientsPercentage - 2 && pehValues.emollientsPercentage <= $emollientsPercentage + 2
+              					&& scalpType == $scalpType) )
+	then
+		System.out.println("lista svakodnevnih sampona je ---> " + $recommendedDS.size());
+		$preparation.setDailyShampoos($recommendedDS);
+		update($preparation)
+end
+
+
+
+rule "Recommend deep wash shampoo"
+	no-loop true 
+	when
+		$scalp: Scalp($scalpSensitivity: scalpSensitivity)
+		$peh: PehValues($proteinsPercentage: proteinsPercentage != -1, $emollientsPercentage: emollientsPercentage != -1, $humectansPercentage: humectansPercentage != -1)
+		$preparation: Preparations(deepWashShampoos.size == 0)
+		$recommendedDWS : ArrayList()
+              from collect( DeepWashShampoo( pehValues.proteinsPercentage >= $proteinsPercentage - 2 && pehValues.proteinsPercentage <= $proteinsPercentage + 2 &&
+              					pehValues.humectansPercentage >= $humectansPercentage - 2 && pehValues.humectansPercentage <= $humectansPercentage + 2 &&
+              					pehValues.emollientsPercentage >= $emollientsPercentage - 2 && pehValues.emollientsPercentage <= $emollientsPercentage + 2
+              					&& scalpSensitivity == $scalpSensitivity) )
+	then
+		System.out.println("lista sampona za duboko pranje je ---> " + $recommendedDWS.size());
+		$preparation.setDeepWashShampoos($recommendedDWS);
+		update($preparation)
+end
+
+
+
+
+
+

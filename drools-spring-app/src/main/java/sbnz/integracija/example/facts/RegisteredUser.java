@@ -16,7 +16,7 @@ public class RegisteredUser extends User implements Serializable{
 	private Advice advices;
 	private Diary diary;
 	
-	public RegisteredUser(Long id, String username, String password, String name, String lastname, Role role, Hair hair,
+	public RegisteredUser(int id, String username, String password, String name, String lastname, Role role, Hair hair,
 			Preparations preparations, Medal medal, Advice advices, Diary diary) {
 		super(id, username, password, name, lastname, role);
 		this.hair = hair;
@@ -26,9 +26,13 @@ public class RegisteredUser extends User implements Serializable{
 		this.diary = diary;
 	}
 
-	public RegisteredUser(Long id, String username, String password, String name, String lastname, Role role) {
+	
+
+	public RegisteredUser(int id, String username, String password, String name, String lastname, Role role) {
 		super(id, username, password, name, lastname, role);
 	}
+
+
 
 	public Hair getHair() {
 		return hair;

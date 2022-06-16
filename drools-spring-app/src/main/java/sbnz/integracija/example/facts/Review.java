@@ -19,6 +19,10 @@ public class Review implements Serializable{
 		this.comments = comments;
 	}
 
+	public Review() {
+		
+	}
+	
 	public User getUser() {
 		return user;
 	}

@@ -2,6 +2,8 @@ package sbnz.integracija.example.facts;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+
 import sbnz.integracija.example.enums.*;
 
 public class UserInput implements Serializable {
@@ -15,13 +17,13 @@ public class UserInput implements Serializable {
 	private boolean hairElasticity;
 	private HairDensity hairDensity;
 	private List<String> alergies;
-	private List<Character> porosityInput;
+	private List<Integer> porosityInput;
 	private Scalp scalp;
 	private ExternalInfluences externalInfluences;
 	
 	
 	public UserInput(HairShape hairShape, HairTickness hairTickness, boolean hairElasticity, HairDensity hairDensity,
-			List<String> alergies, List<Character> porosityInput, Scalp scalp, ExternalInfluences externalInfluences) {
+			List<String> alergies, List<Integer> porosityInput, Scalp scalp, ExternalInfluences externalInfluences) {
 		super();
 		this.hairShape = hairShape;
 		this.hairTickness = hairTickness;
@@ -79,6 +81,7 @@ public class UserInput implements Serializable {
 	}
 
 
+
 	public List<String> getAlergies() {
 		return alergies;
 	}
@@ -89,12 +92,12 @@ public class UserInput implements Serializable {
 	}
 
 
-	public List<Character> getPorosityInput() {
+	public List<Integer> getPorosityInput() {
 		return porosityInput;
 	}
 
 
-	public void setPorosityInput(List<Character> porosityInput) {
+	public void setPorosityInput(List<Integer> porosityInput) {
 		this.porosityInput = porosityInput;
 	}
 
@@ -117,6 +120,10 @@ public class UserInput implements Serializable {
 	public void setExternalInfluences(ExternalInfluences externalInfluences) {
 		this.externalInfluences = externalInfluences;
 	}
+
+
+
+	
 	
 	
 	
