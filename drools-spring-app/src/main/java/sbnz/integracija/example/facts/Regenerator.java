@@ -11,10 +11,22 @@ public class Regenerator extends Preparation implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private List<Component> components;
+	private PehValues pehValues;
 
-	public Regenerator(String name, Review review, List<Component> components) {
+	public Regenerator(String name, Review review, PehValues pehValues, List<Component> components) {
 		super(name, review);
 		this.components = components;
+		this.pehValues = pehValues;
+	}
+	
+	
+	public PehValues getPehValues() {
+		return pehValues;
+	}
+
+
+	public void setPehValues(PehValues pehValues) {
+		this.pehValues = pehValues;
 	}
 
 	public Regenerator() {

@@ -14,13 +14,24 @@ public class DailyShampoo extends Preparation implements Serializable{
 	
 	private ScalpType scalpType;
 	private List<Component> components;
+	private PehValues pehValues;
 	
-	public DailyShampoo(String name, Review review, ScalpType scalpType, List<Component> components) {
+	public DailyShampoo(String name, Review review, ScalpType scalpType, List<Component> components, PehValues pehValues) {
 		super(name, review);
 		this.scalpType = scalpType;
 		this.components = components;
+		this.pehValues = pehValues;
+	}
+	
+	
+	public PehValues getPehValues() {
+		return pehValues;
 	}
 
+
+	public void setPehValues(PehValues pehValues) {
+		this.pehValues = pehValues;
+	}
 	public DailyShampoo() {
 		super();
 	}

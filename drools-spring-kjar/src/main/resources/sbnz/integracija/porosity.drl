@@ -1,0 +1,53 @@
+package sbnz.integracija;
+
+import sbnz.integracija.example.facts.UserInput;
+import sbnz.integracija.example.facts.Hair;
+import sbnz.integracija.example.enums.Porosity;
+
+rule "Define porosoty - LOW"
+    when
+       $input: UserInput($pInput: porosityInput)
+       $hair: Hair(userInput == $input, hairPorosity==Porosity.NA) 
+       Number($total: intValue < 17) from accumulate(
+         Number($i: intValue) from $pInput,
+         sum($i)
+       )
+    then
+        $hair.setHairPorosity(Porosity.LOW);
+        update($hair);
+end
+
+
+rule "Define porosoty - MEDIUM"
+    when
+       $input: UserInput($pInput: porosityInput)
+       $hair: Hair(userInput == $input, hairPorosity==Porosity.NA) 
+       Number($total: intValue>16 && intValue<27) from accumulate(
+         Number($i: intValue) from $pInput,
+         sum($i)
+       )
+    then
+    	
+    	System.out.println("USLO U medium POROSITY");
+        $hair.setHairPorosity(Porosity.MEDIUM);
+        update($hair);
+end
+
+
+
+
+rule "Define porosoty - HIGH"
+    when
+       $input: UserInput($pInput: porosityInput)
+       $hair: Hair(userInput == $input, hairPorosity==Porosity.NA) 
+       Number($total: intValue > 26) from accumulate(
+         Number($i: intValue) from $pInput,
+         sum($i)
+       )
+    then
+        $hair.setHairPorosity(Porosity.HIGH);
+        update($hair);
+end
+
+
+

@@ -2,25 +2,35 @@ package sbnz.integracija.example.facts;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Preparations implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private RegisteredUser user;
 	private LocalDateTime dateOfRecommendation;
-	private Preparation preparation;
+	private List<Mask> masks;
+	private List<Oil> oils;
+	private List<Regenerator>regenerators;
+	private List<DailyShampoo> dailyShampoos;
+	private List<DeepWashShampoo> deepWashShampoos;
+	
 	private boolean current;
+
 	
 	
-	public Preparations(RegisteredUser user, LocalDateTime dateOfRecommendation, Preparation preparation,
-			boolean current) {
+	public Preparations(LocalDateTime dateOfRecommendation, boolean current) {
 		super();
-		this.user = user;
 		this.dateOfRecommendation = dateOfRecommendation;
-		this.preparation = preparation;
 		this.current = current;
+		this.masks = new ArrayList<Mask>();
+		this.regenerators = new ArrayList<Regenerator>();
+		this.oils = new ArrayList<Oil>();
+		this.dailyShampoos = new ArrayList<DailyShampoo>();
+		this.deepWashShampoos = new ArrayList<DeepWashShampoo>();
+		
 	}
 
 
@@ -28,15 +38,6 @@ public class Preparations implements Serializable{
 		super();
 	}
 
-
-	public RegisteredUser getUser() {
-		return user;
-	}
-
-
-	public void setUser(RegisteredUser user) {
-		this.user = user;
-	}
 
 
 	public LocalDateTime getDateOfRecommendation() {
@@ -49,13 +50,54 @@ public class Preparations implements Serializable{
 	}
 
 
-	public Preparation getPreparation() {
-		return preparation;
+
+	public List<Mask> getMasks() {
+		return masks;
 	}
 
 
-	public void setPreparation(Preparation preparation) {
-		this.preparation = preparation;
+	public void setMasks(List<Mask> masks) {
+		this.masks = masks;
+	}
+
+
+	public List<Oil> getOils() {
+		return oils;
+	}
+
+
+	public void setOils(List<Oil> oils) {
+		this.oils = oils;
+	}
+
+
+	public List<Regenerator> getRegenerators() {
+		return regenerators;
+	}
+
+
+	public void setRegenerators(List<Regenerator> regenerators) {
+		this.regenerators = regenerators;
+	}
+
+
+	public List<DailyShampoo> getDailyShampoos() {
+		return dailyShampoos;
+	}
+
+
+	public void setDailyShampoos(List<DailyShampoo> dailyShampoos) {
+		this.dailyShampoos = dailyShampoos;
+	}
+
+
+	public List<DeepWashShampoo> getDeepWashShampoos() {
+		return deepWashShampoos;
+	}
+
+
+	public void setDeepWashShampoos(List<DeepWashShampoo> deepWashShampoos) {
+		this.deepWashShampoos = deepWashShampoos;
 	}
 
 
@@ -69,13 +111,6 @@ public class Preparations implements Serializable{
 	}
 
 
-	@Override
-	public String toString() {
-		return "Preparations [user=" + user + ", dateOfRecommendation=" + dateOfRecommendation + ", preparation="
-				+ preparation + ", current=" + current + "]";
-	}
-	
-	
 	
 	
 }
