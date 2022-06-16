@@ -1,0 +1,192 @@
+package sbnz.integracija;
+
+import sbnz.integracija.example.facts.*;
+import sbnz.integracija.example.enums.*;
+
+
+rule "Define proteins percentage"
+	when 
+		$hair: Hair(hairPorosity != Porosity.NA) 
+		$property: HairProperty($hairSoftness: hairSoftness != HairSoftness.NA, $hairWeakness: hairWeakness != HairWeakness.NA, $hairVolume: hairVolume,
+								$tangling: tangling, $hairShine: hairShine, $dry: dry, $inflating: inflating, $fragile: fragile)
+		$input: UserInput($hairElasticity: hairElasticity)
+		$peh: PehValues(proteinsPercentage == -1)
+		
+        
+        Number($v1: intValue) from accumulate(
+        	HairSoftness($t: this, this == HairSoftness.EXTREMELY_SOFT) from $hairSoftness,
+        	count($t)
+        )
+        
+        Number($v2: intValue) from accumulate(
+        	HairWeakness($t: this, this == HairWeakness.WEAK) from $hairWeakness,
+        	count($t)
+        )
+        
+        Number($v3: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $hairVolume,
+        	count($t)
+        )
+        
+        Number($v4: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $tangling,
+        	count($t)
+        )
+        
+        Number($v5: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $hairShine,
+        	count($t)
+        )
+        
+        Number($v6: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $dry,
+        	count($t)
+        )
+        
+        Number($v7: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $inflating,
+        	count($t)
+        )
+        
+        Number($v8: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $fragile,
+        	count($t)
+        )
+        
+        Number($v9: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $hairElasticity,
+        	count($t)
+        )
+        
+	then
+		$peh.setProteinsPercentage($v1 + $v2 + $v3 + $v4 + $v5 + $v6 + $v7 + $v8 + $v9);
+		update($peh);
+end
+
+
+
+
+
+rule "Define emolijense percentage"
+	when 
+		$hair: Hair(hairPorosity != Porosity.NA) 
+		$property: HairProperty($hairSoftness: hairSoftness != HairSoftness.NA, $hairWeakness: hairWeakness != HairWeakness.NA, $hairVolume: hairVolume,
+								$tangling: tangling, $hairShine: hairShine, $dry: dry, $inflating: inflating, $fragile: fragile)
+		$input: UserInput($hairElasticity: hairElasticity)
+		$peh: PehValues(emollientsPercentage == -1)
+		
+        
+        Number($v1: intValue) from accumulate(
+        	HairSoftness($t: this, this == HairSoftness.COARSE || this == HairSoftness.SOFT) from $hairSoftness,
+        	count($t)
+        )
+        
+        Number($v2: intValue) from accumulate(
+        	HairWeakness($t: this, this == HairWeakness.WEAK || this == HairWeakness.NORMAL) from $hairWeakness,
+        	count($t)
+        )
+        
+        Number($v3: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $hairVolume,
+        	count($t)
+        )
+        
+        Number($v4: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $tangling,
+        	count($t)
+        )
+        
+        Number($v5: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $hairShine,
+        	count($t)
+        )
+        
+        Number($v6: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $dry,
+        	count($t)
+        )
+        
+        Number($v7: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $inflating,
+        	count($t)
+        )
+        
+        Number($v8: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $fragile,
+        	count($t)
+        )
+        
+        Number($v9: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $hairElasticity,
+        	count($t)
+        )
+        
+	then
+		$peh.setEmollientsPercentage($v1 + $v2 + $v3 + $v4 + $v5 + $v6 + $v7 + $v8 + $v9);
+		update($peh);
+end
+
+
+
+
+
+
+
+rule "Define humektansi percentage"
+	when 
+		$hair: Hair(hairPorosity != Porosity.NA) 
+		$property: HairProperty($hairSoftness: hairSoftness != HairSoftness.NA, $hairWeakness: hairWeakness != HairWeakness.NA, $hairVolume: hairVolume,
+								$tangling: tangling, $hairShine: hairShine, $dry: dry, $inflating: inflating, $fragile: fragile)
+		$input: UserInput($hairElasticity: hairElasticity)
+		$peh: PehValues(humectansPercentage == -1)
+		
+        
+        Number($v1: intValue) from accumulate(
+        	HairSoftness($t: this, this == HairSoftness.COARSE || this == HairSoftness.SOFT) from $hairSoftness,
+        	count($t)
+        )
+        
+        Number($v2: intValue) from accumulate(
+        	HairWeakness($t: this, this == HairWeakness.WEAK || this == HairWeakness.NORMAL) from $hairWeakness,
+        	count($t)
+        )
+        
+        Number($v3: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $hairVolume,
+        	count($t)
+        )
+        
+        Number($v4: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $tangling,
+        	count($t)
+        )
+        
+        Number($v5: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $hairShine,
+        	count($t)
+        )
+        
+        Number($v6: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $dry,
+        	count($t)
+        )
+        
+        Number($v7: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $inflating,
+        	count($t)
+        )
+        
+        Number($v8: intValue) from accumulate(
+        	Boolean($t: this, this == true) from $fragile,
+        	count($t)
+        )
+        
+        Number($v9: intValue) from accumulate(
+        	Boolean($t: this, this == false) from $hairElasticity,
+        	count($t)
+        )
+        
+	then
+		$peh.setHumectansPercentage($v1 + $v2 + $v3 + $v4 + $v5 + $v6 + $v7 + $v8 + $v9);
+		update($peh);
+end

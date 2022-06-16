@@ -9,7 +9,7 @@ public class User implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Long id;
+	private int id;
 	private String username;
 	private String password;
 	private String name;
@@ -17,7 +17,7 @@ public class User implements Serializable{
 	private Role role;
 	
 	
-	public User(Long id, String username, String password, String name, String lastname, Role role) {
+	public User(int id, String username, String password, String name, String lastname, Role role) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -33,12 +33,12 @@ public class User implements Serializable{
 	}
 
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

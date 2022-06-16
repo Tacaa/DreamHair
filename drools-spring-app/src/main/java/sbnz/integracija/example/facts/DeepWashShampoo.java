@@ -16,15 +16,26 @@ public class DeepWashShampoo extends Preparation implements Serializable{
 	private List<Component> components;
 	private ScalpSensitivity scalpSensitivity;
 	private ShampooIntensity shampooIntensity;
+	private PehValues pehValues;
 	
 	public DeepWashShampoo(String name, Review review, List<Component> components, ScalpSensitivity scalpSensitivity,
-			ShampooIntensity shampooIntensity) {
+			ShampooIntensity shampooIntensity,  PehValues pehValues) {
 		super(name, review);
 		this.components = components;
 		this.scalpSensitivity = scalpSensitivity;
 		this.shampooIntensity = shampooIntensity;
+		this.pehValues = pehValues;
+	}
+	
+	
+	public PehValues getPehValues() {
+		return pehValues;
 	}
 
+
+	public void setPehValues(PehValues pehValues) {
+		this.pehValues = pehValues;
+	}
 	
 	
 	public DeepWashShampoo() {
