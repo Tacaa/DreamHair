@@ -1,0 +1,27 @@
+template header
+minscore
+maxscore
+medal
+firstAdvice
+secondAdvice
+thirdAdvice
+
+package sbnz.integracija;
+
+import sbnz.integracija.example.facts.*;
+import sbnz.integracija.example.enums.*;
+
+template "Advice-template"
+
+rule "Give advice_@{row.rowNumber}"
+	no-loop true 
+	when
+		$user: RegisteredUser(advices.score >= @{minscore} && advices.score <= @{maxscore}, medal==@{medal})
+	then
+		$user.getAdvices().setFirstAdvice(@{firstAdvice});
+		$user.getAdvices().setSecondAdvice(@{secondAdvice});
+		$user.getAdvices().setThirdAdvice(@{thirdAdvice});
+		update($user);
+end
+
+end template
