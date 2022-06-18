@@ -1,0 +1,48 @@
+template header
+minscore
+maxscore
+medal
+
+package sbnz.integracija;
+
+import sbnz.integracija.example.facts.*;
+import sbnz.integracija.example.enums.*;
+import java.time.*;
+import java.util.List;
+
+template "Medal-template"
+
+rule "Give medal_@{row.rowNumber}"
+	no-loop true 
+	when
+		$user: RegisteredUser()
+		$diary: Diary($hairWash: hairWash, $hairGrowthConsistency: hairGrowthConsistency, $hairStateConsistency :hairStateConsistency, $commentsConsistency: commentsConsistency)
+		
+		Number($value1: intValue) from accumulate(
+        	LocalDateTime($t: this) from $hairWash,
+        	count($t)
+        )
+        
+        Number($value2: intValue) from accumulate(
+        	LocalDateTime($t: this) from $hairGrowthConsistency,
+        	count($t)
+        )
+        
+        Number($value3: intValue) from accumulate(
+        	LocalDateTime($t: this) from $hairStateConsistency,
+        	count($t)
+        )
+        
+        Number($value4: intValue) from accumulate(
+        	LocalDateTime($t: this) from $commentsConsistency,
+        	count($t)
+        )
+        
+        eval(($value1 + $value2 + $value3 + $value4) >= @{minscore} && ($value1 + $value2 + $value3 + $value4) <= @{maxscore})
+        
+	then
+		$user.setMedal(@{medal});
+		update($user);
+end
+
+end template

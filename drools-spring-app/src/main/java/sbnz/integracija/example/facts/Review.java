@@ -9,13 +9,23 @@ public class Review implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private User user;
-	private int rating;
+	private double rating;
 	private List<String> comments;
+	private List<Integer> listOfRatings;
 	
-	public Review(User user, int rating, List<String> comments) {
+	public List<Integer> getListOfRatings() {
+		return listOfRatings;
+	}
+
+	public void setListOfRatings(List<Integer> listOfRatings) {
+		this.listOfRatings = listOfRatings;
+	}
+
+	public Review(User user, double rating, List<String> comments, List<Integer> listOfRatings) {
 		super();
 		this.user = user;
 		this.rating = rating;
+		this.listOfRatings = listOfRatings;
 		this.comments = comments;
 	}
 
@@ -31,11 +41,11 @@ public class Review implements Serializable{
 		this.user = user;
 	}
 
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 

@@ -1,6 +1,7 @@
 package sbnz.integracija.example;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +50,7 @@ public class SampleAppController {
 
 	@RequestMapping(value = "/item", method = RequestMethod.GET, produces = "application/json")
 	public Item getQuestions(@RequestParam(required = true) String id, @RequestParam(required = true) String name,
-			@RequestParam(required = true) double cost, @RequestParam(required = true) double salePrice) {
+			@RequestParam(required = true) double cost, @RequestParam(required = true) double salePrice) throws FileNotFoundException {
 
 		//Item newItem = new Item(Long.parseLong(id), name, cost, salePrice);
 
