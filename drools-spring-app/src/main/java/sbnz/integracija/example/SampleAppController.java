@@ -9,6 +9,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,10 +37,13 @@ import sbnz.integracija.example.facts.Item;
 import sbnz.integracija.example.facts.PehValues;
 import sbnz.integracija.example.facts.RegisteredUser;
 import sbnz.integracija.example.facts.Scalp;
+import sbnz.integracija.example.facts.User;
 import sbnz.integracija.example.facts.UserInput;
 import sbnz.integracija.example.services.UserService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@RequestMapping("sample")
 public class SampleAppController {
 	private static Logger log = LoggerFactory.getLogger(SampleAppController.class);
 
@@ -46,6 +54,14 @@ public class SampleAppController {
 	public SampleAppController(SampleAppService sampleService, UserService userService) {
 		this.sampleService = sampleService;
 		this.userService = userService;
+	}
+	
+	
+	@GetMapping("/proba")
+	public ResponseEntity<User> proba() {
+		System.out.println("TACA");
+		User user = this.userService.getUser();
+		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/item", method = RequestMethod.GET, produces = "application/json")
