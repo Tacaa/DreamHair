@@ -46,6 +46,8 @@ import sbnz.integracija.example.facts.Preparations;
 import sbnz.integracija.example.facts.Regenerator;
 import sbnz.integracija.example.facts.RegisteredUser;
 import sbnz.integracija.example.facts.Review;
+import sbnz.integracija.example.facts.User;
+import sbnz.integracija.example.repositories.UserRepository;
 
 
 
@@ -62,6 +64,9 @@ public class UserService {
 		this.kieContainer = kieContainer;
 	}
 
+	@Autowired
+	private UserRepository repository;
+	
 	public Hair getPreparation(Hair hair) throws FileNotFoundException {
 		
 		/*
@@ -347,6 +352,9 @@ public class UserService {
 		
 		System.out.println("\n");
 		*/
+		
+		//User user = repository.findById(1);
+		//System.out.print(user.getName() + " " + user.getLastname());
 		
 		return hair;
 		
