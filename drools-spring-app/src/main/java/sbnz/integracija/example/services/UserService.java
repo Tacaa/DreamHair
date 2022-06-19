@@ -67,6 +67,10 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 	
+	public User getUser() {
+		return repository.findById(1);
+	}
+	
 	public Hair getPreparation(Hair hair) throws FileNotFoundException {
 		
 		/*
