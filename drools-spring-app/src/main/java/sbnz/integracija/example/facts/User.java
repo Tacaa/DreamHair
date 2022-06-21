@@ -1,13 +1,15 @@
 package sbnz.integracija.example.facts;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
 import javax.persistence.*;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -16,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 		discriminatorType = DiscriminatorType.STRING
 )
 @Table(name = "users")
-public class User implements Serializable{
+public class User implements Serializable, UserDetails{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -97,6 +99,34 @@ public class User implements Serializable{
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return this.roles;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+	
+	@Override
+	@JsonIgnore
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isCredentialsNonExpired() {
+		return true;
 	}
 
 	

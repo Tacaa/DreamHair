@@ -1,12 +1,13 @@
 package sbnz.integracija.example.facts;
 import javax.persistence.*;
 
+import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "role")
-public class Role { 
+public class Role implements GrantedAuthority{ 
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -31,6 +32,11 @@ public class Role {
     public void setName(String name) {
         this.name = name;
     }
+
+	@Override
+	public String getAuthority() {
+		 return name;
+	}
 
     
 }

@@ -40,7 +40,7 @@ import sbnz.integracija.example.facts.User;
 import sbnz.integracija.example.facts.UserInput;
 import sbnz.integracija.example.services.UserService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("sample")
 public class SampleAppController {
@@ -55,7 +55,7 @@ public class SampleAppController {
 		this.userService = userService;
 	}
 	
-	//@CrossOrigin(origins = "http://localhost:4200")
+	
 	@GetMapping("/proba")
 	public ResponseEntity<UserDTO> proba() {
 		System.out.println("TACA");
