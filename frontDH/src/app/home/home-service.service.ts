@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Main } from '../../main'
+import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +11,57 @@ import { Main } from '../../main'
 export class HomeServiceService {
   readonly URL : string = Main.PATH + "sample/proba";
 
-  constructor(private http: HttpClient) { }
+  constructor
+    (
+      private router: Router,
+      private http: HttpClient
+    ) { }
+  
+    private access_token = "";
+    private token_data = null;
+  
+    login(user: any) {
+      const body = {
+        'username': user.username,
+        'password': user.password
+      };
+      return this.http.post<any>(Main.PATH + "auth/login", body)
+        .pipe(map((res) => {
+          this.access_token = res.accessToken;
+          this.token_data = res;
+          window.localStorage.setItem("token", this.access_token);
+        }, catchError(this.errorHander)));
+    }
+  
+    logout() {
+      this.access_token = "";
+      this.token_data = null;
+      this.router.navigate(['/login']);
+    }
+  
+   
+    tokenIsPresent() {
+      return this.access_token != null;
+    }
+  
+    getToken() {
+      return this.access_token;
+    }
+  
+    getTokenData() {
+      if ( this.token_data != null) {
+        return this.token_data;
+      } else {
+        return {
+          id: 0,
+          username: "",
+          role: "",
+        };
+      }
+    }
+  
+    errorHander(error: HttpErrorResponse) {
+      return throwError(error);
+    }
 
-  proba() {
-    return this.http.get(this.URL);
   }
-
-
-}

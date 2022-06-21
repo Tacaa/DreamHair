@@ -1,0 +1,119 @@
+
+
+body {
+    background-image: url("../../assets/background_pic.jpg");
+    margin: 0;
+    padding: 0;
+    
+    height: 100vh;
+  }
+
+  .div_p{
+    margin-left: 465px;
+  }
+
+  p {
+    position: relative;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-size: 2em;
+    letter-spacing: 4px;
+    overflow: hidden;
+    background: linear-gradient(90deg, #FFA07A, #fff, #FA8072);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: animate 10s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  }
+  
+  @keyframes animate {
+    0% {
+      background-position: -500%;
+    }
+    100% {
+      background-position: 500%;
+    }
+  }
+
+
+
+  h1 { 
+    text-align: center;
+    color: whitesmoke;
+    text-transform: uppercase;
+    padding: 1px;
+    font-family: 'Raleway', cursive;
+    font-weight: 100;
+    position: relative;
+    background: linear-gradient(to right, #6d918b, whitesmoke, #6d918b);
+  }
+  h1::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    width: 600px;
+    margin-left: -300px;
+    margin-top: -220px;
+    height: 600px;
+    background: radial-gradient(50% 50%, ellipse closest-side, #444, #6d918b);
+    z-index: -1;
+  }
+  h1 a {
+    background: #5d7c77;
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    letter-spacing: 30px;
+    color: rgb(13, 10, 10);
+  }
+
+
+  
+  .login-card {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+    
+  }
+
+
+
+  mat-form-field{
+    color: #FA8072;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+  }
+
+
+  mat-card-actions{
+    margin-left: 200px;
+    color: #5d7c77; 
+    font-family: 'Trocchi', serif; 
+  }
+  
+  .option_button{
+    
+    background-color: #FA8072;
+    
+    text-align: center;
+    color: whitesmoke; 
+    font-family: 'Trocchi', serif;
+    font-size: 20px;
+  }
+
+
+  .picture{
+    width:500px;
+    height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  

@@ -5,4 +5,5 @@ import sbnz.integracija.example.facts.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 	public User findById(int id);
+	public User findByUsername(String username);
 }
