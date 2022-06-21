@@ -2,36 +2,32 @@ package sbnz.integracija.example.facts;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import sbnz.integracija.example.enums.ScalpType;
 
+@Entity
+@DiscriminatorValue(value = "DAILY_SHAMPOO")
 public class DailyShampoo extends Preparation implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
+	@Column(name = "scalpType")
 	private ScalpType scalpType;
-	private List<Component> components;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "peh_values_id", referencedColumnName = "id")
 	private PehValues pehValues;
 	
-	public DailyShampoo(String name, Review review, ScalpType scalpType, List<Component> components, PehValues pehValues) {
-		super(name, review);
-		this.scalpType = scalpType;
-		this.components = components;
-		this.pehValues = pehValues;
-	}
-	
-	
-	public PehValues getPehValues() {
-		return pehValues;
-	}
 
-
-	public void setPehValues(PehValues pehValues) {
-		this.pehValues = pehValues;
-	}
 	public DailyShampoo() {
 		super();
 	}
@@ -44,23 +40,14 @@ public class DailyShampoo extends Preparation implements Serializable{
 		this.scalpType = scalpType;
 	}
 
-	public List<Component> getComponents() {
-		return components;
+	public PehValues getPehValues() {
+		return pehValues;
 	}
 
-	public void setComponents(List<Component> components) {
-		this.components = components;
+	public void setPehValues(PehValues pehValues) {
+		this.pehValues = pehValues;
 	}
 
-	@Override
-	public String toString() {
-		return "DailyShampoo [scalpType=" + scalpType + ", components=" + components + "]";
-	}
 	
-	
-	
-	
-	
-
 	
 }

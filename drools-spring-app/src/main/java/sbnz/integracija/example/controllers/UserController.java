@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import sbnz.integracija.example.facts.Item;
+
 import sbnz.integracija.example.facts.Preparations;
 import sbnz.integracija.example.services.UserService;
 

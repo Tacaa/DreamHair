@@ -3,50 +3,39 @@ package sbnz.integracija.example.facts;
 import java.io.Serializable;
 import java.util.List;
 
-public class Regenerator extends Preparation implements Serializable{
+import javax.persistence.*;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@Entity
+@DiscriminatorValue(value = "REGENERATOR")
+public class Regenerator extends Preparation implements Serializable{
+private static final long serialVersionUID = 1L;
 	
-	private List<Component> components;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "peh_values_id", referencedColumnName = "id")
 	private PehValues pehValues;
 
-	public Regenerator(String name, Review review, PehValues pehValues, List<Component> components) {
-		super(name, review);
-		this.components = components;
-		this.pehValues = pehValues;
-	}
-	
-	
-	public PehValues getPehValues() {
-		return pehValues;
-	}
-
-
-	public void setPehValues(PehValues pehValues) {
-		this.pehValues = pehValues;
-	}
+	@OneToMany(mappedBy = "regenerator")
+	private List<PreparationsRegenerator> PreparationsRegenerator;
 
 	public Regenerator() {
 		super();
 	}
 
-	public List<Component> getComponents() {
-		return components;
+	public PehValues getPehValues() {
+		return pehValues;
 	}
 
-	public void setComponents(List<Component> components) {
-		this.components = components;
+	public void setPehValues(PehValues pehValues) {
+		this.pehValues = pehValues;
 	}
 
-	@Override
-	public String toString() {
-		return "Regenerator [components=" + components + "]";
+	public List<PreparationsRegenerator> getPreparationsRegenerator() {
+		return PreparationsRegenerator;
 	}
-	
-	
+
+	public void setPreparationsRegenerator(List<PreparationsRegenerator> preparationsRegenerator) {
+		PreparationsRegenerator = preparationsRegenerator;
+	}
 	
 	
 	

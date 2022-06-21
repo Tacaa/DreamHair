@@ -2,25 +2,42 @@ package sbnz.integracija.example.facts;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import sbnz.integracija.example.enums.*;
 
+@Entity
+@Table(name = "scalp")
 public class Scalp implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ScalpSensitivity scalpSensitivity;
-	private ScalpType scalpType;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
 	
-	public Scalp(ScalpSensitivity scalpSensitivity, ScalpType scalpType) {
-		super();
-		this.scalpSensitivity = scalpSensitivity;
-		this.scalpType = scalpType;
-	}
+	@Column(name = "scalp_sensitivity")
+	private ScalpSensitivity scalpSensitivity;
+	
+	@Column(name = "scalp_type")
+	private ScalpType scalpType;
+
 
 	public Scalp() {
 		super();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public ScalpSensitivity getScalpSensitivity() {
@@ -39,11 +56,5 @@ public class Scalp implements Serializable {
 		this.scalpType = scalpType;
 	}
 
-	@Override
-	public String toString() {
-		return "Scalp [scalpSensitivity=" + scalpSensitivity + ", scalpType=" + scalpType + "]";
-	}
-	
-	
 	
 }

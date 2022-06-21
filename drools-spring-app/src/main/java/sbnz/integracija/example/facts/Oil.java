@@ -1,21 +1,26 @@
 package sbnz.integracija.example.facts;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.*;
 
 import sbnz.integracija.example.enums.Porosity;
 
+@Entity
+@DiscriminatorValue(value = "OIL")
 public class Oil extends Preparation implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
+	@Column(name = "type")
 	private Porosity type;
 
-	public Oil(String name, Review review, Porosity type) {
-		super(name, review);
-		this.type = type;
+	@OneToMany(mappedBy = "oil")
+	private List<PreparationsOil> preparationsOil;
+
+	public Oil() {
+		super();
 	}
 
 	public Porosity getType() {
@@ -26,15 +31,13 @@ public class Oil extends Preparation implements Serializable{
 		this.type = type;
 	}
 
-	public Oil() {
-		super();
+	public List<PreparationsOil> getPreparationsOil() {
+		return preparationsOil;
 	}
 
-	@Override
-	public String toString() {
-		return "Oil [type=" + type + "]";
+	public void setPreparationsOil(List<PreparationsOil> preparationsOil) {
+		this.preparationsOil = preparationsOil;
 	}
 	
 	
-
 }

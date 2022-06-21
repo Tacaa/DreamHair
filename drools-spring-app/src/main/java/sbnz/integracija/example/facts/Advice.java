@@ -1,43 +1,51 @@
 package sbnz.integracija.example.facts;
 
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "advice")
 public class Advice {
-	private int score;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(name = "score")
+	private Integer score;
+	
+	@Column(name = "first_advice")
 	private String firstAdvice;
+	
+	@Column(name = "second_advice")
 	private String secondAdvice;
+	
+	@Column(name = "third_advice")
 	private String thirdAdvice;
-	
-	
-	
-	public Advice(int score, String firstAdvice, String secondAdvice, String thirdAdvice) {
+
+	public Advice() {
 		super();
-		this.score = score;
-		this.firstAdvice = firstAdvice;
-		this.secondAdvice = secondAdvice;
-		this.thirdAdvice = thirdAdvice;
 	}
 
-	
+	public Integer getId() {
+		return id;
+	}
 
-	public int getScore() {
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getScore() {
 		return score;
 	}
 
-
-
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
-	}
-
-
-
-	public String getThirdAdvice() {
-		return thirdAdvice;
-	}
-
-	public void setThirdAdvice(String thirdAdvice) {
-		this.thirdAdvice = thirdAdvice;
 	}
 
 	public String getFirstAdvice() {
@@ -56,11 +64,14 @@ public class Advice {
 		this.secondAdvice = secondAdvice;
 	}
 
-	public Advice() {
-		super();
+	public String getThirdAdvice() {
+		return thirdAdvice;
+	}
+
+	public void setThirdAdvice(String thirdAdvice) {
+		this.thirdAdvice = thirdAdvice;
 	}
 	
-
 	
 	
 }

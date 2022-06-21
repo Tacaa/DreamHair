@@ -2,102 +2,94 @@ package sbnz.integracija.example.facts;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "preparations")
 public class Preparations implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
+	
+	@Column(name = "date_of_recommendation")
 	private LocalDateTime dateOfRecommendation;
-	private List<Mask> masks;
-	private List<Oil> oils;
-	private List<Regenerator>regenerators;
-	private List<DailyShampoo> dailyShampoos;
-	private List<DeepWashShampoo> deepWashShampoos;
 	
+	@OneToMany(mappedBy = "preparations")
+	Set<PreparationsDailyShampoo> preparationsDailyShampoo;
+	
+	@OneToMany(mappedBy = "preparations")
+	Set<PreparationsDeepWashShampoo> preparationsDeepWashShampoo;
+	
+	@OneToMany(mappedBy="preparations")
+	private List<PreparationsMask> preparationsMask;
+	
+	@OneToMany(mappedBy="preparations")
+	private List<PreparationsOil> preparationsOil;
+	
+	@OneToMany(mappedBy="preparations")
+	private List<PreparationsRegenerator> preparationsRegenerator;
+	
+	@Column(name = "current")
 	private boolean current;
-
 	
-	
-	public Preparations(LocalDateTime dateOfRecommendation, boolean current) {
-		super();
-		this.dateOfRecommendation = dateOfRecommendation;
-		this.current = current;
-		this.masks = new ArrayList<Mask>();
-		this.regenerators = new ArrayList<Regenerator>();
-		this.oils = new ArrayList<Oil>();
-		this.dailyShampoos = new ArrayList<DailyShampoo>();
-		this.deepWashShampoos = new ArrayList<DeepWashShampoo>();
-		
-	}
-
+	@OneToOne(mappedBy = "preparations")
+    private RegisteredUser user;
 
 	public Preparations() {
 		super();
 	}
 
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public LocalDateTime getDateOfRecommendation() {
 		return dateOfRecommendation;
 	}
 
-
 	public void setDateOfRecommendation(LocalDateTime dateOfRecommendation) {
 		this.dateOfRecommendation = dateOfRecommendation;
 	}
 
-
-
-	public List<Mask> getMasks() {
-		return masks;
+	public List<PreparationsMask> getPreparationsMask() {
+		return preparationsMask;
 	}
 
-
-	public void setMasks(List<Mask> masks) {
-		this.masks = masks;
+	public void setPreparationsMask(List<PreparationsMask> preparationsMask) {
+		this.preparationsMask = preparationsMask;
 	}
 
-
-	public List<Oil> getOils() {
-		return oils;
+	public List<PreparationsOil> getPreparationsOil() {
+		return preparationsOil;
 	}
 
-
-	public void setOils(List<Oil> oils) {
-		this.oils = oils;
+	public void setPreparationsOil(List<PreparationsOil> preparationsOil) {
+		this.preparationsOil = preparationsOil;
 	}
 
-
-	public List<Regenerator> getRegenerators() {
-		return regenerators;
+	public List<PreparationsRegenerator> getPreparationsRegenerator() {
+		return preparationsRegenerator;
 	}
 
-
-	public void setRegenerators(List<Regenerator> regenerators) {
-		this.regenerators = regenerators;
-	}
-
-
-	public List<DailyShampoo> getDailyShampoos() {
-		return dailyShampoos;
-	}
-
-
-	public void setDailyShampoos(List<DailyShampoo> dailyShampoos) {
-		this.dailyShampoos = dailyShampoos;
-	}
-
-
-	public List<DeepWashShampoo> getDeepWashShampoos() {
-		return deepWashShampoos;
-	}
-
-
-	public void setDeepWashShampoos(List<DeepWashShampoo> deepWashShampoos) {
-		this.deepWashShampoos = deepWashShampoos;
+	public void setPreparationsRegenerator(List<PreparationsRegenerator> preparationsRegenerator) {
+		this.preparationsRegenerator = preparationsRegenerator;
 	}
 
 
@@ -105,12 +97,17 @@ public class Preparations implements Serializable{
 		return current;
 	}
 
-
 	public void setCurrent(boolean current) {
 		this.current = current;
 	}
 
+	public RegisteredUser getUser() {
+		return user;
+	}
 
+	public void setUser(RegisteredUser user) {
+		this.user = user;
+	}
 	
 	
 }
