@@ -1,10 +1,20 @@
 package sbnz.integracija.example.facts;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 import javax.persistence.*;
-import sbnz.integracija.example.enums.Role;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+		name = "USER_TYPE",
+		discriminatorType = DiscriminatorType.STRING
+)
 @Table(name = "users")
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -12,6 +22,30 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
 	@Column(name = "username", nullable = false, unique=true)
 	private String username;
 	
@@ -24,82 +58,51 @@ public class User implements Serializable{
 	@Column(name = "last_name", nullable = false)
 	private String lastname;
 	
-	@Column(name = "role", nullable = false)
-	private Role role;
-	
-	
-	
-	////////////////////////////////  KONSTRUKTORI  ////////////////////////////////
-	public User() {
-		super();
-	}
+	@Column(name = "enabled")
+	private Boolean enabled;
 
-	public User(int id, String username, String password, String name, String lastname, Role role) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.name = name;
-		this.lastname = lastname;
-		this.role = role;
-	}
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_role",
+			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	private List<Role> roles;
 
-	
-
-	////////////////////////////////  GETERI I SETERI  ////////////////////////////////
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+	public Boolean getEnabled() {
+		return enabled;
 	}
 
-
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
+	public List<Role> getRoles() {
+		return roles;
+	}
 
-	public Role getRole() {
-		return role;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
-	public void setRole(Role role) {
-		this.role = role;
-	}
+
 	
 	
 	
 	
-	
-	
-	
-	
+
 	
 }

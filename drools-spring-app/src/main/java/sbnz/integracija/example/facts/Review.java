@@ -3,42 +3,52 @@ package sbnz.integracija.example.facts;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import sbnz.integracija.example.converter.ListToIntegerConverter;
+import sbnz.integracija.example.converter.ListToStringConverter;
+
+@Entity
+@Table(name = "review")
 public class Review implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private User user;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(name = "rating")
 	private double rating;
+	
+	@Column(name = "coments")
+	@Convert(converter = ListToStringConverter.class)
 	private List<String> comments;
+	
+	@Column(name = "list_of_ratings")
+	@Convert(converter = ListToIntegerConverter.class)
 	private List<Integer> listOfRatings;
 	
-	public List<Integer> getListOfRatings() {
-		return listOfRatings;
-	}
-
-	public void setListOfRatings(List<Integer> listOfRatings) {
-		this.listOfRatings = listOfRatings;
-	}
-
-	public Review(User user, double rating, List<String> comments, List<Integer> listOfRatings) {
-		super();
-		this.user = user;
-		this.rating = rating;
-		this.listOfRatings = listOfRatings;
-		this.comments = comments;
-	}
+	@OneToOne(mappedBy = "review")
+    private Preparation preparation;
+	
+	
 
 	public Review() {
-		
-	}
-	
-	public User getUser() {
-		return user;
+		super();
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public double getRating() {
@@ -57,12 +67,21 @@ public class Review implements Serializable{
 		this.comments = comments;
 	}
 
-	@Override
-	public String toString() {
-		return "Review [user=" + user + ", rating=" + rating + ", comments=" + comments + "]";
+	public List<Integer> getListOfRatings() {
+		return listOfRatings;
 	}
-	
-	
+
+	public void setListOfRatings(List<Integer> listOfRatings) {
+		this.listOfRatings = listOfRatings;
+	}
+
+	public Preparation getPreparation() {
+		return preparation;
+	}
+
+	public void setPreparation(Preparation preparation) {
+		this.preparation = preparation;
+	}
 	
 	
 }

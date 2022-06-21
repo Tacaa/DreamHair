@@ -27,13 +27,11 @@ import org.kie.api.builder.Message;
 
 import sbnz.integracija.example.enums.ComponentType;
 import sbnz.integracija.example.enums.Porosity;
-import sbnz.integracija.example.enums.Role;
 import sbnz.integracija.example.enums.Medal;
 import sbnz.integracija.example.enums.ScalpSensitivity;
 import sbnz.integracija.example.enums.ScalpType;
 import sbnz.integracija.example.enums.ShampooIntensity;
 import sbnz.integracija.example.facts.Advice;
-import sbnz.integracija.example.facts.Component;
 import sbnz.integracija.example.facts.DailyShampoo;
 import sbnz.integracija.example.facts.DeepWashShampoo;
 import sbnz.integracija.example.facts.Diary;
@@ -68,7 +66,9 @@ public class UserService {
 	private UserRepository repository;
 	
 	public User getUser() {
+		
 		return repository.findById(1);
+		
 	}
 	
 	public Hair getPreparation(Hair hair) throws FileNotFoundException {

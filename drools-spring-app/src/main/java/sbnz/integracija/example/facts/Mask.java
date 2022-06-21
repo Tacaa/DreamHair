@@ -5,50 +5,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Mask extends Preparation implements Serializable{
+import javax.persistence.*;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@Entity
+@DiscriminatorValue(value = "MASK")
+public class Mask extends Preparation implements Serializable{
+private static final long serialVersionUID = 1L;
 	
-	private List<String> components;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "peh_values_id", referencedColumnName = "id")
 	private PehValues pehValues;
 	
-	public Mask(String name, Review review, PehValues pehValues) {
-		super(name, review);
-		this.components = new ArrayList<String>();
-		this.pehValues = pehValues;
-	}
-	
-	
-	public PehValues getPehValues() {
-		return pehValues;
-	}
-
-
-	public void setPehValues(PehValues pehValues) {
-		this.pehValues = pehValues;
-	}
-
+	@OneToMany(mappedBy = "mask")
+	private List<PreparationsMask> preparationsMask;
 
 	public Mask() {
 		super();
 	}
 
-	public List<String> getComponents() {
-		return components;
+	public PehValues getPehValues() {
+		return pehValues;
 	}
 
-	public void setComponents(List<String> components) {
-		this.components = components;
+	public void setPehValues(PehValues pehValues) {
+		this.pehValues = pehValues;
 	}
 
-	@Override
-	public String toString() {
-		return "Mask [components=" + components + "]";
+	public List<PreparationsMask> getPreparationsMask() {
+		return preparationsMask;
 	}
 
+	public void setPreparationsMask(List<PreparationsMask> preparationsMask) {
+		this.preparationsMask = preparationsMask;
+	}
 	
 	
 }

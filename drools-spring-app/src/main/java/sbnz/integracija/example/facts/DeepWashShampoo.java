@@ -3,53 +3,29 @@ package sbnz.integracija.example.facts;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.*;
+
 import sbnz.integracija.example.enums.ScalpSensitivity;
 import sbnz.integracija.example.enums.ShampooIntensity;
 
+@Entity
+@DiscriminatorValue(value = "DEEP_WASH_SHAMPOO")
 public class DeepWashShampoo extends Preparation implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
-	private List<Component> components;
+	@Column(name = "scalp_sensitivity")
 	private ScalpSensitivity scalpSensitivity;
+	
+	@Column(name = "shampoo_intensity")
 	private ShampooIntensity shampooIntensity;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "peh_values_id", referencedColumnName = "id")
 	private PehValues pehValues;
-	
-	public DeepWashShampoo(String name, Review review, List<Component> components, ScalpSensitivity scalpSensitivity,
-			ShampooIntensity shampooIntensity,  PehValues pehValues) {
-		super(name, review);
-		this.components = components;
-		this.scalpSensitivity = scalpSensitivity;
-		this.shampooIntensity = shampooIntensity;
-		this.pehValues = pehValues;
-	}
-	
-	
-	public PehValues getPehValues() {
-		return pehValues;
-	}
 
-
-	public void setPehValues(PehValues pehValues) {
-		this.pehValues = pehValues;
-	}
-	
-	
 	public DeepWashShampoo() {
 		super();
-	}
-
-
-
-	public List<Component> getComponents() {
-		return components;
-	}
-
-	public void setComponents(List<Component> components) {
-		this.components = components;
 	}
 
 	public ScalpSensitivity getScalpSensitivity() {
@@ -68,16 +44,14 @@ public class DeepWashShampoo extends Preparation implements Serializable{
 		this.shampooIntensity = shampooIntensity;
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "DeepWashShampoo [components=" + components + ", scalpSensitivity=" + scalpSensitivity
-				+ ", shampooIntensity=" + shampooIntensity + "]";
+	public PehValues getPehValues() {
+		return pehValues;
 	}
-	
-	
-	
+
+	public void setPehValues(PehValues pehValues) {
+		this.pehValues = pehValues;
+	}
+
 	
 
 }

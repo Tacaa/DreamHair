@@ -1,19 +1,39 @@
 package sbnz.integracija.example.facts;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "peh_values")
 public class PehValues {
-	private double proteinsPercentage;
-	private double emollientsPercentage;
-	private double humectansPercentage;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
 	
-	public PehValues(double proteinsPercentage, double emollientsPercentage, double humectansPercentage) {
-		super();
-		this.proteinsPercentage = proteinsPercentage;
-		this.emollientsPercentage = emollientsPercentage;
-		this.humectansPercentage = humectansPercentage;
-	}
+	@Column(name = "proteins_percentage")
+	private double proteinsPercentage;
+	
+	@Column(name = "emollients_percentage")
+	private double emollientsPercentage;
+	
+	@Column(name = "humectans_percentage")
+	private double humectansPercentage;
 
 	public PehValues() {
 		super();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public double getProteinsPercentage() {
@@ -38,12 +58,6 @@ public class PehValues {
 
 	public void setHumectansPercentage(double humectansPercentage) {
 		this.humectansPercentage = humectansPercentage;
-	}
-
-	@Override
-	public String toString() {
-		return "PehValues [proteinsPercentage=" + proteinsPercentage + ", emollientsPercentage=" + emollientsPercentage
-				+ ", humectansPercentage=" + humectansPercentage + "]";
 	}
 	
 	
