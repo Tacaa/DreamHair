@@ -48,12 +48,16 @@ export class HomeComponent implements OnInit {
         }
       },
       error => {
-        if (error.status === 404) {
-          console.log("Unesen je pogresan username ili lozinka! :(");
-        } else if (error.status === 403) {
-          console.log("Email has not been verifed!");
-        }
+        this.openSnackBar("Uneseno pogrešno korisničko ime ili lozinka! :(", this.RESPONSE_ERROR);
       });
+  }
+
+  openSnackBar(msg: string, responseCode: number) {
+    this.snackBar.open(msg, "x", {
+      duration: 5000,
+      verticalPosition: this.verticalPosition,
+      panelClass: responseCode === this.RESPONSE_OK ? "back-green" : "back-red"
+    });
   }
 
   
