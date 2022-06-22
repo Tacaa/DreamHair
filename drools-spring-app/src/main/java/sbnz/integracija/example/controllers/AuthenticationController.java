@@ -1,7 +1,9 @@
 package sbnz.integracija.example.controllers;
 import sbnz.integracija.example.dto.JwtAuthenticationRequest;
+import sbnz.integracija.example.dto.UserDTO;
 import sbnz.integracija.example.dto.UserTokenState;
 import sbnz.integracija.example.facts.User;
+import sbnz.integracija.example.services.UserService;
 import sbnz.integracija.example.util.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,9 @@ public class AuthenticationController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
+	@Autowired
+	private UserService userService;
+	
 	
 	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserTokenState> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) {
@@ -51,6 +56,18 @@ public class AuthenticationController {
 		} catch (BadCredentialsException bdc) {
 			return new ResponseEntity<UserTokenState>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	
+	@PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserDTO> register(@RequestBody UserDTO dto) {
+		System.out.println("TACA");
+		User userRet = userService.registerUser(dto);
+		
+		if(userRet.getUsername() == null) {
+			return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
+		}
+		return ResponseEntity.ok(new UserDTO(userRet.getId(), userRet.getName(), userRet.getLastname(), userRet.getUsername(), userRet.getPassword()));
 	}
 	
 }

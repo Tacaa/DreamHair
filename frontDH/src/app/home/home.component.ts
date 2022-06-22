@@ -40,7 +40,8 @@ export class HomeComponent implements OnInit {
       data => {
         console.log(this.service.getTokenData()?.role)
         if (this.service.getTokenData()?.role === "ROLE_ADMIN") {
-          console.log("admin!!!")
+          console.log(this.service.getTokenData())
+          //this.router.navigate(['/AdminProfile'], {state:{data:{"id": this.service.getTokenData()?.id}}});
           this.router.navigate(['/AdminProfile']);
         } else if (this.service.getTokenData()?.role === "ROLE_REGISTERED_USER") {
           this.router.navigate(['/UserProfileComponent']);
@@ -48,15 +49,13 @@ export class HomeComponent implements OnInit {
       },
       error => {
         if (error.status === 404) {
-          console.log("Invalid username/password!");
+          console.log("Unesen je pogresan username ili lozinka! :(");
         } else if (error.status === 403) {
           console.log("Email has not been verifed!");
         }
       });
   }
 
-  signupPage(){
-    console.log("ckick login")
-  }
+  
   
 }

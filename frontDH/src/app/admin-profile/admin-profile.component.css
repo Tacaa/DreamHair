@@ -1,0 +1,56 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+body {
+    background-image: url("../../assets/background_pic.jpg");
+    margin: 0;
+    padding: 0;
+    
+    height: 100vh;
+  }
+
+.profil{
+    margin-left: 10px;
+}
+
+.toolbar{
+    background-color: #e5a7a8;
+    color: whitesmoke;
+}
+
+.example-card {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+}
+
+.picture{
+    width:240px;
+    height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.option_button{
+    background-color: #e5a7a8;
+    text-align: center;
+    color: whitesmoke; 
+    font-family: 'Trocchi', serif;
+    font-size: 20px;
+    width: 250px;
+    margin-left: 135px;
+  }
+
+h2{
+    margin-left: 150px;
+    color: #e5a7a8; 
+}
+
+.title{
+    font-family: 'Lucida Handwriting';
+    color: #e5a7a8; 
+}

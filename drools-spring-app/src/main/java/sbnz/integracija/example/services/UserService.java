@@ -20,11 +20,13 @@ import org.kie.api.runtime.rule.QueryResultsRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import org.kie.internal.utils.KieHelper;
 import org.kie.api.builder.Message;
 
+import sbnz.integracija.example.dto.UserDTO;
 import sbnz.integracija.example.enums.ComponentType;
 import sbnz.integracija.example.enums.Porosity;
 import sbnz.integracija.example.enums.Medal;
@@ -44,7 +46,9 @@ import sbnz.integracija.example.facts.Preparations;
 import sbnz.integracija.example.facts.Regenerator;
 import sbnz.integracija.example.facts.RegisteredUser;
 import sbnz.integracija.example.facts.Review;
+import sbnz.integracija.example.facts.Role;
 import sbnz.integracija.example.facts.User;
+import sbnz.integracija.example.repositories.RoleRepository;
 import sbnz.integracija.example.repositories.UserRepository;
 
 
@@ -53,23 +57,45 @@ import sbnz.integracija.example.repositories.UserRepository;
 public class UserService {
 
 	private static Logger log = LoggerFactory.getLogger(UserService.class);
-	
 	private final KieContainer kieContainer;
+	
+	@Autowired
+	private UserRepository repository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	public UserService(KieContainer kieContainer) {
 		log.info("Initialising a new user session.");
 		this.kieContainer = kieContainer;
 	}
-
-	@Autowired
-	private UserRepository repository;
 	
-	public User getUser() {
+	
+	public User registerUser(UserDTO dto) {
+		User alreadyExists = repository.findByUsername(dto.getUsername());
 		
-		return repository.findById(1);
+		if(alreadyExists != null) {
+			return new User();
+		}
 		
+		RegisteredUser user = new RegisteredUser();
+		user.setName(dto.getName());
+		user.setLastname(dto.getLastname());
+		user.setUsername(dto.getUsername());
+		user.setPassword(passwordEncoder.encode(dto.getPassword())); //hesiraj
+		user.setEnabled(true);
+		List<Role> roles = new ArrayList<Role>();
+		Role role = roleRepository.findByName("ROLE_REGISTERED_USER");
+		roles.add(role);
+		user.setRoles(roles);
+		repository.save(user);
+		return user;
 	}
+	
 	
 	public Hair getPreparation(Hair hair) throws FileNotFoundException {
 		

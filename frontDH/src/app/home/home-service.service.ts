@@ -4,12 +4,13 @@ import { Main } from '../../main'
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeServiceService {
-  readonly URL : string = Main.PATH + "sample/proba";
+  readonly REG_URL : string = Main.PATH + "auth/register";
 
   constructor
     (
@@ -36,7 +37,10 @@ export class HomeServiceService {
     logout() {
       this.access_token = "";
       this.token_data = null;
-      this.router.navigate(['/login']);
+      window.localStorage.setItem('userId', "");
+      window.localStorage.setItem('username', "");
+      window.localStorage.setItem('role', "");
+      this.router.navigate(['']);
     }
   
    
@@ -63,5 +67,18 @@ export class HomeServiceService {
     errorHander(error: HttpErrorResponse) {
       return throwError(error);
     }
+
+
+    register(data:any){
+      const body = {
+        'id': -1,
+        'username': data.username,
+        'password': data.password,
+        'name': data.name,
+        'lastname': data.lastname,
+      };
+      return this.http.post<any>(this.REG_URL, body)
+               .pipe(catchError(this.errorHander));
+  }
 
   }
