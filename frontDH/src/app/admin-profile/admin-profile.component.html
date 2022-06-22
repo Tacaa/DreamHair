@@ -1,1 +1,34 @@
-<p>admin-profile works!</p>
+<body>
+    <mat-toolbar class="toolbar">
+        <mat-icon>menu</mat-icon>
+        <span class="profil">ADMIN PROFIL</span>
+        <span class="example-spacer"></span>
+        <mat-icon>favorite</mat-icon>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click) ="logout()">
+            <span class="material-icons">logout</span>
+        </button>
+      </mat-toolbar>
+
+      <br>
+      <br>
+      <br>
+
+      <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title class="title">{{name}} {{lastName}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-lg-image class="picture"  src="../../assets/icon.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            
+            <div class="dugmici">
+                <button class="option_button" mat-raised-button>PREGLED PROIZVODA</button>
+                <br>
+                <br>
+                <button class="option_button" mat-raised-button>IZVJEŠTAJI</button>
+            </div>
+        </mat-card-content>
+        <br>
+        <br>
+        <br>
+      </mat-card>
+</body>

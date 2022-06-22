@@ -4,27 +4,26 @@ package sbnz.integracija.example.dto;
 
 public class UserDTO {
 	private int id;
-	private String username;
-	private String password;
 	private String name;
 	private String lastname;
+	private String username;
+	private String password;
 
-	public UserDTO(int id, String username, String password, String name, String lastname) {
+	public UserDTO(int id, String name, String lastname, String username, String password) {
 		super();
 		this.id = id;
-		this.username = username;
-		this.password = password;
 		this.name = name;
 		this.lastname = lastname;
+		this.username = username;
+		this.password = password;
+	}
+	
+
+	public UserDTO() {
+		super();
 	}
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getUsername() {
 		return username;
@@ -40,6 +39,14 @@ public class UserDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {

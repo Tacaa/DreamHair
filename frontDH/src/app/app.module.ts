@@ -49,6 +49,10 @@ import { UserRoutes } from './user-routes/UserRoutes';
         canActivate: [UserRoutes],
         component: UserProfileComponent,
       },
+      {
+        path: 'RegistrationComponent',
+        component: RegistrationComponent,
+      },
     ]),
   ],
   providers: [

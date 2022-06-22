@@ -56,23 +56,15 @@ public class SampleAppController {
 	}
 	
 	
-	@GetMapping("/proba")
-	public ResponseEntity<UserDTO> proba() {
-		System.out.println("TACA");
-		User user = this.userService.getUser();
-		//System.out.println();
-		UserDTO dto = new UserDTO(user.getId(), user.getUsername(), user.getPassword(), user.getName(), user.getLastname());
-		return new ResponseEntity<>(dto, HttpStatus.OK);
-	}
-
+	
 	
 	@RequestMapping(value = "/item", method = RequestMethod.GET, produces = "application/json")
 	public Item getQuestions(@RequestParam(required = true) String id, @RequestParam(required = true) String name,
 			@RequestParam(required = true) double cost, @RequestParam(required = true) double salePrice) throws FileNotFoundException {
 
 		System.out.println("TACA");
-		User user = this.userService.getUser();
-		System.out.println(user.getUsername());
+		//User user = this.userService.getUser();
+		//System.out.println(user.getUsername());
 		
 		return new Item();
 	}

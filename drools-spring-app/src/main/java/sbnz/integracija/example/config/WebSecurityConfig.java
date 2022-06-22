@@ -63,8 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
 				.authorizeRequests().antMatchers("/auth/login").permitAll() //svi imaju pristup logovanju
-				.antMatchers("/sample/proba").permitAll()
-				
+				.antMatchers("/user/").permitAll()
+				.antMatchers("/auth/register").permitAll()
 				.antMatchers("/api/**").permitAll()
 			.anyRequest().authenticated().and()
 			.cors().and()
