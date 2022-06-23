@@ -1,0 +1,71 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+body {
+    background-image: url("../../assets/background_pic.jpg");
+    margin: 0;
+    padding: 0;
+    height: 225vh;
+    
+  }
+
+.profil{
+    margin-left: 10px;
+}
+
+.example-header-image {
+    background-image: url('../../assets/girl.jpg');
+    background-size: cover;
+}
+
+.title{
+    color: #e5a7a8; 
+    font-family: 'Lucida Handwriting';
+}
+
+.toolbar{
+    background-color: #e5a7a8;
+    color: whitesmoke;
+}
+
+
+.stepper{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    color: #FFA07A;
+}
+
+
+
+.login-card {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+  }
+
+ ::ng-deep .mat-step-header .mat-step-icon {
+    background-color: #e5a7a8; 
+ }
+
+ ::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: #e5a7a8 !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: #e5a7a8 !important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: #e5a7a8 !important;
+  }
+
+  .centered_form{
+    width: 470px;
+  }

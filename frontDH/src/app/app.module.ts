@@ -17,6 +17,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminRoutes } from './user-routes/AdminRoutes';
 import { UserRoutes } from './user-routes/UserRoutes';
+import { UserInputComponent } from './user-input/user-input.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { UserRoutes } from './user-routes/UserRoutes';
     AdminProfileComponent,
     RegistrationComponent,
     UserProfileComponent,
+    UserInputComponent,
     
   ],
   imports: [
@@ -52,6 +54,11 @@ import { UserRoutes } from './user-routes/UserRoutes';
       {
         path: 'RegistrationComponent',
         component: RegistrationComponent,
+      },
+      {
+        path: 'UserInputComponent',
+        //canActivate: [UserRoutes],
+        component: UserInputComponent,
       },
     ]),
   ],
