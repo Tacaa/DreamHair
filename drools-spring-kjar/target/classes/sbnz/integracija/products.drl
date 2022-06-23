@@ -26,9 +26,9 @@ rule "Recommend mask"
 		$peh: PehValues($proteinsPercentage: proteinsPercentage != -1, $emollientsPercentage: emollientsPercentage != -1, $humectansPercentage: humectansPercentage != -1)
 		$preparation: Preparations(masks.size == 0)
 		$recommendedMasks : ArrayList()
-              from collect( Mask( pehValues.proteinsPercentage >= $proteinsPercentage - 2 && pehValues.proteinsPercentage <= $proteinsPercentage + 2 &&
-              					pehValues.humectansPercentage >= $humectansPercentage - 2 && pehValues.humectansPercentage <= $humectansPercentage + 2 &&
-              					pehValues.emollientsPercentage >= $emollientsPercentage - 2 && pehValues.emollientsPercentage <= $emollientsPercentage + 2))
+              from collect( Mask( pehValues.proteinsPercentage >= $proteinsPercentage - 3 && pehValues.proteinsPercentage <= $proteinsPercentage + 3 &&
+              					pehValues.humectansPercentage >= $humectansPercentage - 3 && pehValues.humectansPercentage <= $humectansPercentage + 3 &&
+              					pehValues.emollientsPercentage >= $emollientsPercentage - 3 && pehValues.emollientsPercentage <= $emollientsPercentage + 3))
 	then
 		System.out.println($peh);
 		System.out.println("lista maskica je ---> " + $recommendedMasks.size());
@@ -46,9 +46,9 @@ rule "Recommend regenerators"
 		$peh: PehValues($proteinsPercentage: proteinsPercentage != -1, $emollientsPercentage: emollientsPercentage != -1, $humectansPercentage: humectansPercentage != -1)
 		$preparation: Preparations(regenerators.size == 0)
 		$recommendedRegs : ArrayList()
-              from collect( Regenerator( pehValues.proteinsPercentage >= $proteinsPercentage - 2 && pehValues.proteinsPercentage <= $proteinsPercentage + 2 &&
-              					pehValues.humectansPercentage >= $humectansPercentage - 2 && pehValues.humectansPercentage <= $humectansPercentage + 2 &&
-              					pehValues.emollientsPercentage >= $emollientsPercentage - 2 && pehValues.emollientsPercentage <= $emollientsPercentage + 2) )
+              from collect( Regenerator( pehValues.proteinsPercentage >= $proteinsPercentage - 3 && pehValues.proteinsPercentage <= $proteinsPercentage + 3 &&
+              					pehValues.humectansPercentage >= $humectansPercentage - 3 && pehValues.humectansPercentage <= $humectansPercentage + 3 &&
+              					pehValues.emollientsPercentage >= $emollientsPercentage - 3 && pehValues.emollientsPercentage <= $emollientsPercentage + 3) )
 	then
 		System.out.println("lista regeneratora je ---> " + $recommendedRegs.size());
 		$preparation.setRegenerators($recommendedRegs);
@@ -66,9 +66,9 @@ rule "Recommend daily shampoo"
 		$peh: PehValues($proteinsPercentage: proteinsPercentage != -1, $emollientsPercentage: emollientsPercentage != -1, $humectansPercentage: humectansPercentage != -1)
 		$preparation: Preparations(dailyShampoos.size == 0)
 		$recommendedDS : ArrayList()
-              from collect( DailyShampoo( pehValues.proteinsPercentage >= $proteinsPercentage - 2 && pehValues.proteinsPercentage <= $proteinsPercentage + 2 &&
-              					pehValues.humectansPercentage >= $humectansPercentage - 2 && pehValues.humectansPercentage <= $humectansPercentage + 2 &&
-              					pehValues.emollientsPercentage >= $emollientsPercentage - 2 && pehValues.emollientsPercentage <= $emollientsPercentage + 2
+              from collect( DailyShampoo( pehValues.proteinsPercentage >= $proteinsPercentage - 3 && pehValues.proteinsPercentage <= $proteinsPercentage + 3 &&
+              					pehValues.humectansPercentage >= $humectansPercentage - 3 && pehValues.humectansPercentage <= $humectansPercentage + 3 &&
+              					pehValues.emollientsPercentage >= $emollientsPercentage - 3 && pehValues.emollientsPercentage <= $emollientsPercentage + 3
               					&& scalpType == $scalpType) )
 	then
 		System.out.println("lista svakodnevnih sampona je ---> " + $recommendedDS.size());
@@ -85,9 +85,9 @@ rule "Recommend deep wash shampoo"
 		$peh: PehValues($proteinsPercentage: proteinsPercentage != -1, $emollientsPercentage: emollientsPercentage != -1, $humectansPercentage: humectansPercentage != -1)
 		$preparation: Preparations(deepWashShampoos.size == 0)
 		$recommendedDWS : ArrayList()
-              from collect( DeepWashShampoo( pehValues.proteinsPercentage >= $proteinsPercentage - 2 && pehValues.proteinsPercentage <= $proteinsPercentage + 2 &&
-              					pehValues.humectansPercentage >= $humectansPercentage - 2 && pehValues.humectansPercentage <= $humectansPercentage + 2 &&
-              					pehValues.emollientsPercentage >= $emollientsPercentage - 2 && pehValues.emollientsPercentage <= $emollientsPercentage + 2
+              from collect( DeepWashShampoo( pehValues.proteinsPercentage >= $proteinsPercentage - 3 && pehValues.proteinsPercentage <= $proteinsPercentage + 3 &&
+              					pehValues.humectansPercentage >= $humectansPercentage - 3 && pehValues.humectansPercentage <= $humectansPercentage + 3 &&
+              					pehValues.emollientsPercentage >= $emollientsPercentage - 3 && pehValues.emollientsPercentage <= $emollientsPercentage + 3
               					&& scalpSensitivity == $scalpSensitivity) )
 	then
 		System.out.println("lista sampona za duboko pranje je ---> " + $recommendedDWS.size());

@@ -34,6 +34,14 @@ public class ExternalInfluences implements Serializable{
 	@Column(name = "pregnacy")
 	private boolean pregnacy;
 	
+	@Column(name = "sickness")
+	private boolean sickness;
+	
+	@Column(name = "operation")
+	private boolean operation;
+	
+	@Column(name = "itching")
+	private boolean itching;
 
 	public ExternalInfluences() {
 		super();

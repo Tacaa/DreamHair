@@ -1,0 +1,356 @@
+<body>
+    <mat-toolbar class="toolbar">
+        <mat-icon>menu</mat-icon>
+        <span class="profil">UPITNIK</span>
+        <span class="example-spacer"></span>
+        <mat-icon>favorite</mat-icon>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click) ="profile()">
+            <span class="material-icons">face</span>
+        </button>
+      </mat-toolbar>
+
+      <br>
+      <br>
+
+      <mat-card class="login-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title class="title">Ispuni me...</mat-card-title>
+          </mat-card-header>
+        <mat-card-content>
+
+            <mat-vertical-stepper class="stepper" [linear]="false" #stepper>
+                
+                <mat-step [stepControl]="generalForm">
+
+                  <form [formGroup]="generalForm">
+                    <ng-template matStepLabel>Opšte</ng-template>
+                    
+                    <img src="../../assets/hair_type.jpg" width="483px" height="170px">
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Unesite Vaš tip kose...</mat-label>
+                        <mat-select id="hairShape" formControlName="hairShape">
+                            <mat-option value="A1">1A</mat-option>
+                            <mat-option value="B1">1B</mat-option>
+                            <mat-option value="C1">1C</mat-option>
+                            <mat-option value="A2">2A</mat-option>
+                            <mat-option value="B2">2B</mat-option>
+                            <mat-option value="C2">2C</mat-option>
+                            <mat-option value="A3">3A</mat-option>
+                            <mat-option value="B3">3B</mat-option>
+                            <mat-option value="C3">3C</mat-option>
+                            <mat-option value="A4">4A</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <br>
+
+                    <img src="../../assets/Hair_Thickness.webp" width="480px" height="260px">
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Unesite debljinu Vaše dlake...</mat-label>
+                        <mat-select id="hairTickness" formControlName="hairTickness">
+                            <mat-option value="THIN">TANKA</mat-option>
+                            <mat-option value="MEDIUM_THICK">SREDNJE DEBLJINE</mat-option>
+                            <mat-option value="THICK">DEBELA</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <br>
+
+                    <img src="../../assets/elasticity.webp" width="468px" height="200px">
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Odredite elastičnost Vaše kose</mat-label>
+                        <mat-select id="hairElasticity" formControlName="hairElasticity">
+                            <mat-option value="true">DA</mat-option>
+                            <mat-option value="false">NE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <br>
+
+                    <img src="../../assets/density.jpg" width="480px" height="300px">
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Odredite gustinu Vaše kose...</mat-label>
+                        <mat-select id="hairDensity" formControlName="hairDensity">
+                            <mat-option value="SPARSE">RIJETKA</mat-option>
+                            <mat-option value="MEDIUM_DENSE">SREDNJE GUSTINE</mat-option>
+                            <mat-option value="DENSE">GUSTA</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <br>
+
+                    <div>
+                      <button mat-button matStepperNext>SLJEDEĆE</button>
+                    </div>
+                  </form>
+                </mat-step>
+
+
+                <mat-step [stepControl]="scalpForm">
+
+                    <form [formGroup]="scalpForm">
+                      <ng-template matStepLabel>Tjeme</ng-template>
+                      
+                      <br>
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>Unesite tip Vašeg tjemena</mat-label>
+                          <mat-select id="scalpType" formControlName="scalpType">
+                              <mat-option value="GREASY">MASNO</mat-option>
+                              <mat-option value="DRY">SUHO</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>Koliko je osjetljivo Vaše tjeme?</mat-label>
+                          <mat-select id="scalpSensitivity" formControlName="scalpSensitivity">
+                              <mat-option value="SENSITIVE">OSJETLJIVO</mat-option>
+                              <mat-option value="NORMAL">NORMALNO</mat-option>
+                              <mat-option value="INSENSITIVE">NEOSJETLJIVO</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                      
+                      <div>
+                        <button mat-button matStepperNext>SLJEDEĆE</button>
+                        <button mat-button matStepperPrevious>NAZAD</button>
+                      </div>
+                    </form>
+                  </mat-step>
+
+
+
+                  <mat-step [stepControl]="porosityForm">
+
+                    <form [formGroup]="porosityForm">
+                      <ng-template matStepLabel>Poroznost</ng-template>
+                      
+                      <br>
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>1.	Kakva je uglavnom tvoja kosa?</mat-label>
+                          <mat-select id="a" formControlName="a">
+                              <mat-option value="3">Glatka i blistava</mat-option>
+                              <mat-option value="2">Uglavnom nije problematična, ali ponekad se napuhava</mat-option>
+                              <mat-option value="1">Suha ili uništena</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                    
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>2.	Koliko vremena treba tvojoj kosi da se prirodno osuši?</mat-label>
+                          <mat-select id="b" formControlName="b">
+                            <mat-option value="3">Više od 3 sata</mat-option>
+                            <mat-option value="2">Između 3 do 1,5 sat</mat-option>
+                            <mat-option value="1">Do 1,5 sat</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                     
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>3.	Procijeni sjaj svoje kose</mat-label>
+                          <mat-select id="c" formControlName="c">
+                            <mat-option value="3">Baš je sjajna</mat-option>
+                              <mat-option value="2">Ovisi o svjetlu</mat-option>
+                              <mat-option value="1">Nikada se ne sija</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                      
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>4.	Šta se dogodi ako prebaciš pramen svoje kose na drugu stranu?</mat-label>
+                          <mat-select id="d" formControlName="d">
+                            <mat-option value="3">Odmah se vrati u prvobitni položaj</mat-option>
+                            <mat-option value="2">Polako će se vratiti u prvobitni položaj</mat-option>
+                            <mat-option value="1">Ostaće onako kako je prebačena</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                    
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>5.	Kad napraviš pletenicu, uviješ ili stilizuješ na drugačiji način </mat-label>
+                          <mat-select id="e" formControlName="e">
+                            <mat-option value="3">Kosa se odmah vraća u prvobitni položaj</mat-option>
+                            <mat-option value="2">Kosa je valovita/kovrdžava neko vrijeme</mat-option>
+                            <mat-option value="1">Kosa ostaje u ovom obliku  duže vrijeme</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                      
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>6.	Šta se dešava s volumenom kose kad je češljaš?</mat-label>
+                          <mat-select id="f" formControlName="f">
+                            <mat-option value="3">Gubi na volumenu</mat-option>
+                            <mat-option value="2">Ne vidim promjenu na volumenu kose</mat-option>
+                            <mat-option value="1">Dobija na volumenu</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                     
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>7.	Kakva je tvoja kosa na dodir?</mat-label>
+                          <mat-select id="g" formControlName="g">
+                            <mat-option value="3">Vrlo mekana i svilena</mat-option>
+                            <mat-option value="2">Dosta mekana</mat-option>
+                            <mat-option value="1">Suha i gruba</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                      
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>8.	Da li je tvoja kosa sklona petljanju?</mat-label>
+                          <mat-select id="h" formControlName="h">
+                            <mat-option value="3">Ne</mat-option>
+                            <mat-option value="2">Ponekad</mat-option>
+                            <mat-option value="1">Da</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                      
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>9.	Da li je tvoja kosa sklona napuhavanju?</mat-label>
+                          <mat-select id="i" formControlName="i">
+                            <mat-option value="3">Nikada se ne napuhava</mat-option>
+                            <mat-option value="2">Ponekad se napuhava, u zavisnosti od vremena I proizvoda koje koristim</mat-option>
+                            <mat-option value="1">Uvijek se napuhava</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                      
+
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>10. Da li su tvoji vrhovi skloni pucanju?</mat-label>
+                          <mat-select id="j" formControlName="j">
+                            <mat-option value="3">Vrlo rijetko primjetim oštećene vrhove</mat-option>
+                            <mat-option value="2">Dovoljno je da se šišam svakih nekoliko mjeseci</mat-option>
+                            <mat-option value="1">Dosta često se moram šišati</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+                    
+
+                      <mat-form-field class="centered_form" appearance="fill">
+                          <mat-label>11. Da li se farbaš, peglaš ili stiliziraš kosu često?</mat-label>
+                          <mat-select id="k" formControlName="k">
+                            <mat-option value="3">Ne, nikad</mat-option>
+                            <mat-option value="2">Da, ponekad</mat-option>
+                            <mat-option value="1">Da, uvijek</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <br>
+  
+                      <div>
+                        <button mat-button matStepperNext>SLJEDEĆE</button>
+                        <button mat-button matStepperPrevious>NAZAD</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                
+
+                  <mat-step [stepControl]="externalForm">
+
+                    <form [formGroup]="externalForm">
+                      <ng-template matStepLabel>Spoljašnji uticaji</ng-template>
+                      
+                      <br>
+                      <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Da li farbate kosu?</mat-label>
+                        <mat-select id="dyedHair" formControlName="dyedHair">
+                            <mat-option value="true">DA</mat-option>
+                            <mat-option value="false">NE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                      <br>
+
+                      <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Da li blanširate kosu?</mat-label>
+                        <mat-select id="bleachedHair" formControlName="bleachedHair">
+                            <mat-option value="true">DA</mat-option>
+                            <mat-option value="false">NE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Da li imate perut?</mat-label>
+                        <mat-select id="dandruff" formControlName="dandruff">
+                            <mat-option value="true">DA</mat-option>
+                            <mat-option value="false">NE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Da bolujete od gljivične infekcije tjemena?</mat-label>
+                        <mat-select id="fungal" formControlName="fungal">
+                            <mat-option value="true">DA</mat-option>
+                            <mat-option value="false">NE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Da li Vas tjeme svrbi često?</mat-label>
+                        <mat-select id="itching" formControlName="itching">
+                            <mat-option value="true">DA</mat-option>
+                            <mat-option value="false">NE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Da li ste trudni?</mat-label>
+                        <mat-select id="pregnacy" formControlName="pregnacy">
+                            <mat-option value="true">DA</mat-option>
+                            <mat-option value="false">NE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Da li ste bolesni ili ste nedavno preboljeli prehladu/bolest?</mat-label>
+                        <mat-select id="sickness" formControlName="sickness">
+                            <mat-option value="true">DA</mat-option>
+                            <mat-option value="false">NE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Da li ste nedavno bili na operaciji?</mat-label>
+                        <mat-select id="operation" formControlName="operation">
+                            <mat-option value="true">DA</mat-option>
+                            <mat-option value="false">NE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                      
+                      <div>
+                        <button mat-button matStepperNext>SLJEDEĆE</button>
+                        <button mat-button matStepperPrevious>NAZAD</button>
+                      </div>
+                    </form>
+                  </mat-step>
+
+
+
+                <mat-step>
+                  <ng-template matStepLabel>Kraj</ng-template>
+                  <div>
+                    <button mat-button (click)="pokupi()">ZAVŠENO</button>
+                    <button mat-button matStepperPrevious>NAZAD</button>
+                    <button mat-button (click)="stepper.reset()">RESETUJ</button>
+                  </div>
+                </mat-step>
+
+              </mat-vertical-stepper>
+            
+        </mat-card-content>
+    </mat-card>
+
+    <br>
+      
+</body>
