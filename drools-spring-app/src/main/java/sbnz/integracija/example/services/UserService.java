@@ -175,7 +175,7 @@ public class UserService {
         DataProvider dataProvider = new ArrayDataProvider(new String[][]{
             new String[]{"0", "9", "Medal.BRONZE"},
             new String[]{"10", "29", "Medal.SILVER"},
-            new String[]{"30", "1000", "Medal.GOLD"},
+            new String[]{"20", "1000", "Medal.GOLD"},
         });
         
         DataProviderCompiler converter = new DataProviderCompiler();

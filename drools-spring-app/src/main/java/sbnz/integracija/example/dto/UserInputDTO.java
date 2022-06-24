@@ -148,5 +148,13 @@ public class UserInputDTO {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "UserInputDTO [hairShape=" + hairShape + ", hairTickness=" + hairTickness + ", hairElasticity="
+				+ hairElasticity + ", hairDensity=" + hairDensity + ", porosityInput=" + porosityInput
+				+ ", scalpSensitivity=" + scalpSensitivity + ", scalpType=" + scalpType + ", dyedHair=" + dyedHair
+				+ ", bleachedHair=" + bleachedHair + ", dandruff=" + dandruff + ", fungal=" + fungal + ", pregnacy="
+				+ pregnacy + ", sickness=" + sickness + ", operation=" + operation + ", itching=" + itching + "]";
+	}
 	
 }

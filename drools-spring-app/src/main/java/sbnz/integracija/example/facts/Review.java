@@ -31,8 +31,8 @@ public class Review implements Serializable{
 	private List<String> comments;
 	
 	@Column(name = "list_of_ratings")
-	@Convert(converter = ListToIntegerConverter.class)
-	private List<Integer> listOfRatings;
+	@Convert(converter = ListToStringConverter.class)
+	private List<String> listOfRatings;
 	
 	@OneToOne(mappedBy = "review")
     private Preparation preparation;
@@ -67,11 +67,12 @@ public class Review implements Serializable{
 		this.comments = comments;
 	}
 
-	public List<Integer> getListOfRatings() {
+	
+	public List<String> getListOfRatings() {
 		return listOfRatings;
 	}
 
-	public void setListOfRatings(List<Integer> listOfRatings) {
+	public void setListOfRatings(List<String> listOfRatings) {
 		this.listOfRatings = listOfRatings;
 	}
 

@@ -28,6 +28,46 @@ public class RegisteredUser extends User implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "diary_id", referencedColumnName = "id")
 	private Diary diary;
+
+	public Preparations getPreparations() {
+		return preparations;
+	}
+
+	public void setPreparations(Preparations preparations) {
+		this.preparations = preparations;
+	}
+
+	public Medal getMedal() {
+		return medal;
+	}
+
+	public void setMedal(Medal medal) {
+		this.medal = medal;
+	}
+
+	public Advice getAdvices() {
+		return advices;
+	}
+
+	public void setAdvices(Advice advices) {
+		this.advices = advices;
+	}
+
+	public Hair getHair() {
+		return hair;
+	}
+
+	public void setHair(Hair hair) {
+		this.hair = hair;
+	}
+
+	public Diary getDiary() {
+		return diary;
+	}
+
+	public void setDiary(Diary diary) {
+		this.diary = diary;
+	}
 	
 	
 	

@@ -21,11 +21,15 @@ public class ListToHairStateConverter implements AttributeConverter<List<HairSta
 		if(dbData == null) {
 			return Collections.emptyList();
 		}else {
-			String[] stringic = dbData.split(",");
+			
+			String stringic1 = dbData.replace("[", "");
+			String stringic2 = dbData.replace("]", "");
+			String[] stringic = stringic2.split(",");
 			List<HairState> vrati = new ArrayList<HairState>();
 			
 			for(int i = 0; i<stringic.length; i++) {
-				HairState hs = HairState.valueOf(stringic[i]);
+				
+				HairState hs = HairState.values()[Integer.parseInt(stringic[i])];
 				vrati.add(hs);
 			}
 			return vrati;

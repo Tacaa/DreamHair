@@ -116,7 +116,7 @@ rule "Define NORMAL hair "
         )
         
         Number($value2: intValue) from accumulate(
-        	HairTickness($t: this, this == HairTickness.MEDIUM_THICK) from $hairTickness,
+        	HairTickness($t: this, this == HairTickness.MEDIUM_THICK || this == HairTickness.THICK) from $hairTickness,
         	count($t)
         )
         

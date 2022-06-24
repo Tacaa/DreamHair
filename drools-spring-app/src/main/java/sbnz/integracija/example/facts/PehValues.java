@@ -59,6 +59,14 @@ public class PehValues {
 	public void setHumectansPercentage(double humectansPercentage) {
 		this.humectansPercentage = humectansPercentage;
 	}
+
+	@Override
+	public String toString() {
+		return "PehValues [id=" + id + ", proteinsPercentage=" + proteinsPercentage + ", emollientsPercentage="
+				+ emollientsPercentage + ", humectansPercentage=" + humectansPercentage + "]";
+	}
+	
+	
 	
 	
 }

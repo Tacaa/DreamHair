@@ -16,9 +16,11 @@ private static final long serialVersionUID = 1L;
     @JoinColumn(name = "peh_values_id", referencedColumnName = "id")
 	private PehValues pehValues;
 	
+	/*
 	@OneToMany(mappedBy = "mask")
 	private List<PreparationsMask> preparationsMask;
-
+	*/
+	
 	public Mask() {
 		super();
 	}
@@ -31,6 +33,15 @@ private static final long serialVersionUID = 1L;
 		this.pehValues = pehValues;
 	}
 
+	@Override
+	public String toString() {
+		return "Mask [pehValues=" + pehValues + ", getId()=" + getId() + ", getName()=" + getName() + ", getReview()="
+				+ getReview() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+	
+	/*
 	public List<PreparationsMask> getPreparationsMask() {
 		return preparationsMask;
 	}
@@ -38,6 +49,8 @@ private static final long serialVersionUID = 1L;
 	public void setPreparationsMask(List<PreparationsMask> preparationsMask) {
 		this.preparationsMask = preparationsMask;
 	}
+	*/
+	
 	
 	
 }
