@@ -14,9 +14,12 @@ private static final long serialVersionUID = 1L;
     @JoinColumn(name = "peh_values_id", referencedColumnName = "id")
 	private PehValues pehValues;
 
+	/*
 	@OneToMany(mappedBy = "regenerator")
 	private List<PreparationsRegenerator> PreparationsRegenerator;
-
+	*/
+	
+	
 	public Regenerator() {
 		super();
 	}
@@ -29,6 +32,7 @@ private static final long serialVersionUID = 1L;
 		this.pehValues = pehValues;
 	}
 
+	/*
 	public List<PreparationsRegenerator> getPreparationsRegenerator() {
 		return PreparationsRegenerator;
 	}
@@ -36,7 +40,7 @@ private static final long serialVersionUID = 1L;
 	public void setPreparationsRegenerator(List<PreparationsRegenerator> preparationsRegenerator) {
 		PreparationsRegenerator = preparationsRegenerator;
 	}
-	
+	*/
 	
 	
 }

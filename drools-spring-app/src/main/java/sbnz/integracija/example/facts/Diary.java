@@ -28,32 +28,23 @@ public class Diary implements Serializable{
 	private Integer id;
 	
 	@Column(name = "hair_wash")
-	@Convert(converter = ListToLocalDateTimeConverter.class)
-	private List<LocalDateTime> hairWash;
+	@Convert(converter = ListToStringConverter.class)
+	private List<String> hairWash;
 	
 	@Column(name = "hair_growth")
-	@Convert(converter = ListToIntegerConverter.class)
-	private List<Integer> hairGrowth;
+	@Convert(converter = ListToStringConverter.class)
+	private List<String> hairGrowth;
 	
-	@Column(name = "hair_growth_consistency")
-	@Convert(converter = ListToLocalDateTimeConverter.class)
-	private List<LocalDateTime> hairGrowthConsistency;
 	
 	@Column(name = "hair_state")
-	@Convert(converter = ListToHairStateConverter.class)
-	private List<HairState> hairState;
+	@Convert(converter = ListToStringConverter.class)
+	private List<String> hairState;
 	
-	@Column(name = "hair_state_consistency")
-	@Convert(converter = ListToLocalDateTimeConverter.class)
-	private List<LocalDateTime> hairStateConsistency;
 	
 	@Column(name = "comments")
 	@Convert(converter = ListToStringConverter.class)
 	private List<String> comments;
 	
-	@Column(name = "comments_consistency")
-	@Convert(converter = ListToLocalDateTimeConverter.class)
-	private List<LocalDateTime> commentsConsistency;
 
 	public Diary() {
 		super();
@@ -67,44 +58,28 @@ public class Diary implements Serializable{
 		this.id = id;
 	}
 
-	public List<LocalDateTime> getHairWash() {
+	public List<String> getHairWash() {
 		return hairWash;
 	}
 
-	public void setHairWash(List<LocalDateTime> hairWash) {
+	public void setHairWash(List<String> hairWash) {
 		this.hairWash = hairWash;
 	}
 
-	public List<Integer> getHairGrowth() {
+	public List<String> getHairGrowth() {
 		return hairGrowth;
 	}
 
-	public void setHairGrowth(List<Integer> hairGrowth) {
+	public void setHairGrowth(List<String> hairGrowth) {
 		this.hairGrowth = hairGrowth;
 	}
 
-	public List<LocalDateTime> getHairGrowthConsistency() {
-		return hairGrowthConsistency;
-	}
-
-	public void setHairGrowthConsistency(List<LocalDateTime> hairGrowthConsistency) {
-		this.hairGrowthConsistency = hairGrowthConsistency;
-	}
-
-	public List<HairState> getHairState() {
+	public List<String> getHairState() {
 		return hairState;
 	}
 
-	public void setHairState(List<HairState> hairState) {
+	public void setHairState(List<String> hairState) {
 		this.hairState = hairState;
-	}
-
-	public List<LocalDateTime> getHairStateConsistency() {
-		return hairStateConsistency;
-	}
-
-	public void setHairStateConsistency(List<LocalDateTime> hairStateConsistency) {
-		this.hairStateConsistency = hairStateConsistency;
 	}
 
 	public List<String> getComments() {
@@ -115,13 +90,12 @@ public class Diary implements Serializable{
 		this.comments = comments;
 	}
 
-	public List<LocalDateTime> getCommentsConsistency() {
-		return commentsConsistency;
+	@Override
+	public String toString() {
+		return "Diary [id=" + id + ", hairWash=" + hairWash + ", hairGrowth=" + hairGrowth + ", hairState=" + hairState
+				+ ", comments=" + comments + "]";
 	}
 
-	public void setCommentsConsistency(List<LocalDateTime> commentsConsistency) {
-		this.commentsConsistency = commentsConsistency;
-	}
 	
 	
 }

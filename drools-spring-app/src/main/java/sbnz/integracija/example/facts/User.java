@@ -132,7 +132,6 @@ public class User implements Serializable, UserDetails{
 	
 	
 	
-	
 
 	
 }

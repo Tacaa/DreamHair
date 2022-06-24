@@ -95,5 +95,30 @@ public class ExternalInfluences implements Serializable{
 		this.pregnacy = pregnacy;
 	}
 
+	public boolean isSickness() {
+		return sickness;
+	}
+
+	public void setSickness(boolean sickness) {
+		this.sickness = sickness;
+	}
+
+	public boolean isOperation() {
+		return operation;
+	}
+
+	public void setOperation(boolean operation) {
+		this.operation = operation;
+	}
+
+	public boolean isItching() {
+		return itching;
+	}
+
+	public void setItching(boolean itching) {
+		this.itching = itching;
+	}
+
+	
 	
 }

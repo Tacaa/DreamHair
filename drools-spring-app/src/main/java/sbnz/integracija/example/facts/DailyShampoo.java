@@ -20,7 +20,7 @@ public class DailyShampoo extends Preparation implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name = "scalpType")
+	@Column(name = "scalp_type")
 	private ScalpType scalpType;
 	
 	@OneToOne(cascade = CascadeType.ALL)

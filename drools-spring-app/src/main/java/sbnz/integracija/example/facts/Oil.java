@@ -16,9 +16,11 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "type")
 	private Porosity type;
 
+	/*
 	@OneToMany(mappedBy = "oil")
 	private List<PreparationsOil> preparationsOil;
-
+	*/
+	
 	public Oil() {
 		super();
 	}
@@ -31,6 +33,12 @@ private static final long serialVersionUID = 1L;
 		this.type = type;
 	}
 
+	@Override
+	public String toString() {
+		return "Oil [type=" + type + ", getName()=" + getName() + "]";
+	}
+
+	/*
 	public List<PreparationsOil> getPreparationsOil() {
 		return preparationsOil;
 	}
@@ -38,6 +46,8 @@ private static final long serialVersionUID = 1L;
 	public void setPreparationsOil(List<PreparationsOil> preparationsOil) {
 		this.preparationsOil = preparationsOil;
 	}
+	*/
+	
 	
 	
 }

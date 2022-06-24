@@ -65,6 +65,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers("/auth/login").permitAll() //svi imaju pristup logovanju
 				.antMatchers("/user/").permitAll()
 				.antMatchers("/auth/register").permitAll()
+				.antMatchers("/hair/calculate").permitAll()
+				.antMatchers("/hair/advices").permitAll()
 				.antMatchers("/api/**").permitAll()
 			.anyRequest().authenticated().and()
 			.cors().and()
@@ -72,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 	}
 	
-
+	
 	//definisanje konfiguracije koja utice na generalnu bezbednost aplikacije
 	@Override
 	public void configure(WebSecurity web) throws Exception {

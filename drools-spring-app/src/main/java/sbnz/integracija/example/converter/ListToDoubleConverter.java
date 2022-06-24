@@ -6,16 +6,18 @@ import java.util.List;
 
 import javax.persistence.AttributeConverter;
 
-public class ListToIntegerConverter implements AttributeConverter<List<Integer>, String> {
+import sbnz.integracija.example.enums.HairState;
+
+public class ListToDoubleConverter implements AttributeConverter<List<Double>, String>{
 
 	@Override
-	public String convertToDatabaseColumn(List<Integer> attribute) {
+	public String convertToDatabaseColumn(List<Double> attribute) {
 		return attribute == null ? null : String.join(",", attribute.toString());
 		
 	}
 
 	@Override
-	public List<Integer> convertToEntityAttribute(String dbData) {
+	public List<Double> convertToEntityAttribute(String dbData) {
 		if(dbData == null) {
 			return Collections.emptyList();
 		}else {
@@ -23,14 +25,14 @@ public class ListToIntegerConverter implements AttributeConverter<List<Integer>,
 			String stringic2 = dbData.replace("]", "");
 			System.out.println(stringic2);
 			String[] stringic = stringic2.split(",");
-			List<Integer> vrati = new ArrayList<Integer>();
+			List<Double> vrati = new ArrayList<Double>();
 			
 			for(int i = 0; i<stringic.length; i++) {
-				vrati.add(Integer.getInteger(stringic[i]));
+				vrati.add(Double.valueOf(stringic[i]));
 			}
 			return vrati;
 			
 		}
 	}
-    
+
 }

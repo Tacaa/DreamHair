@@ -7,9 +7,13 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,6 +31,40 @@ public class Preparations implements Serializable{
 	@Column(name = "date_of_recommendation")
 	private LocalDateTime dateOfRecommendation;
 	
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "preparations_oil",
+			joinColumns = @JoinColumn(name = "preparations_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "oil_id", referencedColumnName = "id"))
+	List<Oil> oils;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "preparations_mask",
+			joinColumns = @JoinColumn(name = "preparations_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "mask_id", referencedColumnName = "id"))
+	List<Mask> masks;
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "preparations_regenerator",
+			joinColumns = @JoinColumn(name = "preparations_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "regenerator_id", referencedColumnName = "id"))
+	List<Regenerator> regenerators;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "preparations_ds",
+			joinColumns = @JoinColumn(name = "preparations_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "ds_id", referencedColumnName = "id"))
+	List<DailyShampoo> dailyShampoos;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "preparations_dws",
+			joinColumns = @JoinColumn(name = "preparations_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "dws_id", referencedColumnName = "id"))
+	List<DeepWashShampoo> deepWashShampoos;
+	
+
+	/*
 	@OneToMany(mappedBy = "preparations")
 	Set<PreparationsDailyShampoo> preparationsDailyShampoo;
 	
@@ -41,6 +79,7 @@ public class Preparations implements Serializable{
 	
 	@OneToMany(mappedBy="preparations")
 	private List<PreparationsRegenerator> preparationsRegenerator;
+	*/
 	
 	@Column(name = "current")
 	private boolean current;
@@ -68,6 +107,7 @@ public class Preparations implements Serializable{
 		this.dateOfRecommendation = dateOfRecommendation;
 	}
 
+	/*
 	public List<PreparationsMask> getPreparationsMask() {
 		return preparationsMask;
 	}
@@ -91,7 +131,7 @@ public class Preparations implements Serializable{
 	public void setPreparationsRegenerator(List<PreparationsRegenerator> preparationsRegenerator) {
 		this.preparationsRegenerator = preparationsRegenerator;
 	}
-
+	*/
 
 	public boolean isCurrent() {
 		return current;
@@ -101,6 +141,7 @@ public class Preparations implements Serializable{
 		this.current = current;
 	}
 
+	
 	public RegisteredUser getUser() {
 		return user;
 	}
@@ -108,6 +149,48 @@ public class Preparations implements Serializable{
 	public void setUser(RegisteredUser user) {
 		this.user = user;
 	}
+
+	public List<Oil> getOils() {
+		return oils;
+	}
+
+	public void setOils(List<Oil> oils) {
+		this.oils = oils;
+	}
+
+	public List<Mask> getMasks() {
+		return masks;
+	}
+
+	public void setMasks(List<Mask> masks) {
+		this.masks = masks;
+	}
+
+	public List<Regenerator> getRegenerators() {
+		return regenerators;
+	}
+
+	public void setRegenerators(List<Regenerator> regenerators) {
+		this.regenerators = regenerators;
+	}
+
+	public List<DailyShampoo> getDailyShampoos() {
+		return dailyShampoos;
+	}
+
+	public void setDailyShampoos(List<DailyShampoo> dailyShampoos) {
+		this.dailyShampoos = dailyShampoos;
+	}
+
+	public List<DeepWashShampoo> getDeepWashShampoos() {
+		return deepWashShampoos;
+	}
+
+	public void setDeepWashShampoos(List<DeepWashShampoo> deepWashShampoos) {
+		this.deepWashShampoos = deepWashShampoos;
+	}
+	
+	
 	
 	
 }

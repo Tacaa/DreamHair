@@ -123,6 +123,13 @@ public class HairProperty implements Serializable{
 		this.fragile = fragile;
 	}
 
+	@Override
+	public String toString() {
+		return "HairProperty [id=" + id + ", hairSoftness=" + hairSoftness + ", hairWeakness=" + hairWeakness
+				+ ", hairVolume=" + hairVolume + ", tangling=" + tangling + ", hairShine=" + hairShine + ", dry=" + dry
+				+ ", inflating=" + inflating + ", fragile=" + fragile + "]";
+	}
+
 	
 	
 	

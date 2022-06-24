@@ -18,6 +18,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminRoutes } from './user-routes/AdminRoutes';
 import { UserRoutes } from './user-routes/UserRoutes';
 import { UserInputComponent } from './user-input/user-input.component';
+import { ResultPreparationComponent } from './result-preparation/result-preparation.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { UserInputComponent } from './user-input/user-input.component';
     RegistrationComponent,
     UserProfileComponent,
     UserInputComponent,
+    ResultPreparationComponent,
     
   ],
   imports: [
@@ -57,8 +59,13 @@ import { UserInputComponent } from './user-input/user-input.component';
       },
       {
         path: 'UserInputComponent',
-        //canActivate: [UserRoutes],
+        canActivate: [UserRoutes],
         component: UserInputComponent,
+      },
+      {
+        path: 'ResultPreparationComponent',
+        canActivate: [UserRoutes],
+        component: ResultPreparationComponent,
       },
     ]),
   ],

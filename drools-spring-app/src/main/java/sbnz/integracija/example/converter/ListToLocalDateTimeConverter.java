@@ -1,6 +1,7 @@
 package sbnz.integracija.example.converter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,8 +24,26 @@ public class ListToLocalDateTimeConverter implements AttributeConverter<List<Loc
 			List<LocalDateTime> vrati = new ArrayList<LocalDateTime>();
 			
 			for(int i = 0; i<stringic.length; i++) {
-				LocalDateTime ldt = LocalDateTime.parse(stringic[i]);
-				vrati.add(ldt);
+				System.out.println("U CONVERTERU SAM!!!");
+				System.out.println(stringic[i] + "\n\n");
+				
+				if(stringic[i].charAt(0) == '[') {
+					String novi = stringic[i].replace("[", "");
+					System.out.println(novi);
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+					LocalDateTime ldt = LocalDateTime.parse(novi, formatter);
+					vrati.add(ldt);
+				}else if(stringic[i].charAt(stringic[i].length()-1) == ']') {
+					String novi = stringic[i].replace("]", "");
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+					LocalDateTime ldt = LocalDateTime.parse(novi, formatter);
+					vrati.add(ldt);
+				}else {
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+					LocalDateTime ldt = LocalDateTime.parse(stringic[i], formatter);
+					vrati.add(ldt);
+				}
+				
 			}
 			return vrati;
 			

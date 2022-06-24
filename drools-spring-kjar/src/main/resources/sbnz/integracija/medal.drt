@@ -16,31 +16,32 @@ rule "Give medal_@{row.rowNumber}"
 	no-loop true 
 	when
 		$user: RegisteredUser()
-		$diary: Diary($hairWash: hairWash, $hairGrowthConsistency: hairGrowthConsistency, $hairStateConsistency :hairStateConsistency, $commentsConsistency: commentsConsistency)
+		$diary: Diary($hairWash: hairWash, $hairGrowth: hairGrowth, $hairState :hairState, $comments: comments)
 		
 		Number($value1: intValue) from accumulate(
-        	LocalDateTime($t: this) from $hairWash,
+        	String($t: this) from $hairWash,
         	count($t)
         )
         
         Number($value2: intValue) from accumulate(
-        	LocalDateTime($t: this) from $hairGrowthConsistency,
+        	String($t: this) from $hairGrowth,
         	count($t)
         )
         
         Number($value3: intValue) from accumulate(
-        	LocalDateTime($t: this) from $hairStateConsistency,
+        	String($t: this) from $hairState,
         	count($t)
         )
         
         Number($value4: intValue) from accumulate(
-        	LocalDateTime($t: this) from $commentsConsistency,
+        	String($t: this) from $comments,
         	count($t)
         )
         
         eval(($value1 + $value2 + $value3 + $value4) >= @{minscore} && ($value1 + $value2 + $value3 + $value4) <= @{maxscore})
         
 	then
+		System.out.println("POZ IZ RULE-A!!!");
 		$user.setMedal(@{medal});
 		update($user);
 end

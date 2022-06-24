@@ -39,12 +39,15 @@ public class Preparation implements Serializable{
     @JoinColumn(name = "review_id", referencedColumnName = "id")
 	private Review review;
 	
+	/*
 	@OneToMany(mappedBy = "preparation")
 	private Set<PreparationsDailyShampoo> preparationsDailyShampoo;
 	
 	@OneToMany(mappedBy = "preparation")
 	private Set<PreparationsDeepWashShampoo> preparationsDeepWashShampoo;
-
+	*/
+	
+	
 	public Preparation() {
 		super();
 	}

@@ -71,6 +71,14 @@ public class Advice {
 	public void setThirdAdvice(String thirdAdvice) {
 		this.thirdAdvice = thirdAdvice;
 	}
+
+	@Override
+	public String toString() {
+		return "Advice [id=" + id + ", score=" + score + ", firstAdvice=" + firstAdvice + ", secondAdvice="
+				+ secondAdvice + ", thirdAdvice=" + thirdAdvice + "]";
+	}
+	
+	
 	
 	
 	
