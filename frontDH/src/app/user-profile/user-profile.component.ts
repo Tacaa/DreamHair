@@ -37,5 +37,10 @@ export class UserProfileComponent implements OnInit {
     */
   }
 
+
+  diary(){
+    this.router.navigate(['/DiaryComponent']);
+  }
+
   
 }

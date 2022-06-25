@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import sbnz.integracija.example.dto.AdviceMedalDTO;
+import sbnz.integracija.example.dto.GivenReviewDTO;
 import sbnz.integracija.example.dto.PreparationDTO;
+import sbnz.integracija.example.dto.ReviewPreparationsDTO;
 import sbnz.integracija.example.dto.UserDTO;
 import sbnz.integracija.example.dto.UserInputDTO;
 import sbnz.integracija.example.facts.Advice;
@@ -62,4 +64,21 @@ public class HairController {
 		return new ResponseEntity<>(prep, HttpStatus.OK);
 	}
 	
+	
+	@GetMapping(value = "/reviews", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_REGISTERED_USER')")
+	public ResponseEntity<ReviewPreparationsDTO> reviews() throws FileNotFoundException {
+		User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		ReviewPreparationsDTO prep = service.giveReviews(loggedUser);
+		return new ResponseEntity<>(prep, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping(value = "/giveReview", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_REGISTERED_USER')")
+	public ResponseEntity<ReviewPreparationsDTO> giveReview(@RequestBody GivenReviewDTO dto) {
+		User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		ReviewPreparationsDTO returnDto = service.giveReview(loggedUser, dto);
+		return new ResponseEntity<>(returnDto, HttpStatus.OK);
+	}
 }
