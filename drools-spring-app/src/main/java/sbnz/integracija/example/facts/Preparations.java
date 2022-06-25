@@ -189,6 +189,13 @@ public class Preparations implements Serializable{
 	public void setDeepWashShampoos(List<DeepWashShampoo> deepWashShampoos) {
 		this.deepWashShampoos = deepWashShampoos;
 	}
+
+	@Override
+	public String toString() {
+		return "Preparations [id=" + id + ", dateOfRecommendation=" + dateOfRecommendation + ", oils=" + oils
+				+ ", masks=" + masks + ", regenerators=" + regenerators + ", dailyShampoos=" + dailyShampoos
+				+ ", deepWashShampoos=" + deepWashShampoos + ", current=" + current + ", user=" + user + "]";
+	}
 	
 	
 	

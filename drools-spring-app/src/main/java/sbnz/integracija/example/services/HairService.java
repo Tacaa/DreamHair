@@ -25,7 +25,11 @@ import org.drools.template.DataProvider;
 import org.drools.template.DataProviderCompiler;
 import org.drools.template.objects.ArrayDataProvider;
 
+import sbnz.integracija.example.dto.GivenReviewDTO;
+import sbnz.integracija.example.dto.OnePreparationDTO;
 import sbnz.integracija.example.dto.PreparationDTO;
+import sbnz.integracija.example.dto.ReviewDTO;
+import sbnz.integracija.example.dto.ReviewPreparationsDTO;
 import sbnz.integracija.example.dto.UserInputDTO;
 import sbnz.integracija.example.enums.HairSoftness;
 import sbnz.integracija.example.enums.HairWeakness;
@@ -51,6 +55,7 @@ import sbnz.integracija.example.facts.UserInput;
 import sbnz.integracija.example.repositories.AdviceRepository;
 import sbnz.integracija.example.repositories.PreparationsRepository;
 import sbnz.integracija.example.repositories.ProductsRepository;
+import sbnz.integracija.example.repositories.ReviewRepository;
 import sbnz.integracija.example.repositories.UserRepository;
 
 
@@ -77,6 +82,9 @@ public class HairService {
 	
 	@Autowired
 	AdviceRepository adviceRepo;
+	
+	@Autowired
+	ReviewRepository reviewRepository;
 	
 	
 	public Preparations calculatedPreparations(User user) {
@@ -453,4 +461,135 @@ public class HairService {
         
         return kieHelper.build().newKieSession();
     }
+	
+	public ReviewPreparationsDTO giveReviews(User user) {
+		RegisteredUser ru = userRepository.findRegisteredUser(user.getId());
+		return transformIntoReviewDTO(ru.getPreparations());
+	}
+	
+	public ReviewPreparationsDTO transformIntoReviewDTO(Preparations prep) {
+		ReviewPreparationsDTO dto = new ReviewPreparationsDTO();
+		
+		for(int i = 0; i<prep.getDailyShampoos().size(); i++) {
+			ReviewDTO r = new ReviewDTO();
+			r.setId(-1);
+			if(prep.getDailyShampoos().get(i).getReview() != null) {
+				r.setId(prep.getDailyShampoos().get(i).getReview().getId());
+				r.setComments(prep.getDailyShampoos().get(i).getReview().getComments());
+				r.setRating(prep.getDailyShampoos().get(i).getReview().getRating());
+			}
+			OnePreparationDTO op = new OnePreparationDTO();
+			op.setId(prep.getDailyShampoos().get(i).getId());
+			op.setName(prep.getDailyShampoos().get(i).getName());
+			op.setReview(r);
+			dto.getDailyShampoos().add(op);
+		}
+		
+		for(int i = 0; i<prep.getDeepWashShampoos().size(); i++) {
+			ReviewDTO r = new ReviewDTO();
+			r.setId(-1);
+			if(prep.getDeepWashShampoos().get(i).getReview() != null) {
+				r.setId(prep.getDeepWashShampoos().get(i).getReview().getId());
+				r.setComments(prep.getDeepWashShampoos().get(i).getReview().getComments());
+				r.setRating(prep.getDeepWashShampoos().get(i).getReview().getRating());
+			}
+			OnePreparationDTO op = new OnePreparationDTO();
+			op.setId(prep.getDeepWashShampoos().get(i).getId());
+			op.setName(prep.getDeepWashShampoos().get(i).getName());
+			op.setReview(r);
+			dto.getDeepWashShampoos().add(op);
+		}
+		
+		for(int i = 0; i<prep.getMasks().size(); i++) {
+			ReviewDTO r = new ReviewDTO();
+			r.setId(-1);
+			if(prep.getMasks().get(i).getReview() != null) {
+				r.setId(prep.getMasks().get(i).getReview().getId());
+				r.setComments(prep.getMasks().get(i).getReview().getComments());
+				r.setRating(prep.getMasks().get(i).getReview().getRating());
+			}
+			OnePreparationDTO op = new OnePreparationDTO();
+			op.setId(prep.getMasks().get(i).getId());
+			op.setName(prep.getMasks().get(i).getName());
+			op.setReview(r);
+			dto.getMasks().add(op);
+		}
+		
+		for(int i = 0; i<prep.getRegenerators().size(); i++) {
+			ReviewDTO r = new ReviewDTO();
+			r.setId(-1);
+			if(prep.getRegenerators().get(i).getReview() != null) {
+				r.setId(prep.getRegenerators().get(i).getReview().getId());
+				r.setComments(prep.getRegenerators().get(i).getReview().getComments());
+				r.setRating(prep.getRegenerators().get(i).getReview().getRating());
+			}
+			OnePreparationDTO op = new OnePreparationDTO();
+			op.setId(prep.getRegenerators().get(i).getId());
+			op.setName(prep.getRegenerators().get(i).getName());
+			op.setReview(r);
+			dto.getRegenerators().add(op);
+		}
+		
+		for(int i = 0; i<prep.getOils().size(); i++) {
+			ReviewDTO r = new ReviewDTO();
+			r.setId(-1);
+			if(prep.getOils().get(i).getReview() != null) {
+				r.setId(prep.getOils().get(i).getReview().getId());
+				r.setComments(prep.getOils().get(i).getReview().getComments());
+				r.setRating(prep.getOils().get(i).getReview().getRating());
+			}
+			OnePreparationDTO op = new OnePreparationDTO();
+			op.setId(prep.getOils().get(i).getId());
+			op.setName(prep.getOils().get(i).getName());
+			op.setReview(r);
+			dto.getOils().add(op);
+		}
+		
+		return dto;
+	}
+	
+	private double calculateReview(List<String>ratings) {
+		double rate = 0;
+		for(int i = 0; i<ratings.size(); i++) {
+			rate += Double.parseDouble(ratings.get(i));
+		}
+		double returnRating = rate/ratings.size();
+		return returnRating;
+	}
+	
+	public ReviewPreparationsDTO giveReview(User user, GivenReviewDTO dto) {
+		Review review = reviewRepository.findById(dto.getId());
+		if(review == null) {
+			review = new Review();
+			review.setComments(new ArrayList<String>());
+			review.setListOfRatings(new ArrayList<String>());
+		}
+		
+		if(dto.getComment().equals("")) {
+			List<String>cs = new ArrayList<String>();
+			for(int i = 0; i<review.getComments().size(); i++) {
+				cs.add(review.getComments().get(i));
+			}
+			cs.add(dto.getComment());
+			review.setComments(cs);
+			
+		}
+		
+		if(dto.getRate() != -1) {
+			List<String>rs = new ArrayList<String>();
+			for(int i = 0; i<review.getListOfRatings().size(); i++) {
+				rs.add(review.getListOfRatings().get(i));
+			}
+			rs.add(String.valueOf(dto.getRate()));
+			//review.getListOfRatings().add(String.valueOf(dto.getRate()));
+			review.setListOfRatings(rs);
+			review.setRating(calculateReview(rs));
+		}
+		
+		reviewRepository.save(review);
+		RegisteredUser ru = userRepository.findRegisteredUser(user.getId());
+		System.out.println(ru.getPreparations());
+		return transformIntoReviewDTO(ru.getPreparations());
+		
+	}
 }

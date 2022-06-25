@@ -19,6 +19,9 @@ import { AdminRoutes } from './user-routes/AdminRoutes';
 import { UserRoutes } from './user-routes/UserRoutes';
 import { UserInputComponent } from './user-input/user-input.component';
 import { ResultPreparationComponent } from './result-preparation/result-preparation.component';
+import { PreparationComponent } from './preparation/preparation.component';
+import { DiaryComponent } from './diary/diary.component';
+import { DiaryResultComponent } from './diary-result/diary-result.component';
 
 
 @NgModule({
@@ -30,6 +33,9 @@ import { ResultPreparationComponent } from './result-preparation/result-preparat
     UserProfileComponent,
     UserInputComponent,
     ResultPreparationComponent,
+    PreparationComponent,
+    DiaryComponent,
+    DiaryResultComponent,
     
   ],
   imports: [
@@ -66,6 +72,16 @@ import { ResultPreparationComponent } from './result-preparation/result-preparat
         path: 'ResultPreparationComponent',
         canActivate: [UserRoutes],
         component: ResultPreparationComponent,
+      },
+      {
+        path: 'PreparationComponent',
+        canActivate: [UserRoutes],
+        component: PreparationComponent,
+      },
+      {
+        path: 'DiaryComponent',
+        canActivate: [UserRoutes],
+        component: DiaryComponent,
       },
     ]),
   ],
