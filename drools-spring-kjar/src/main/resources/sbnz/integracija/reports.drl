@@ -6,16 +6,20 @@ import java.time.*;
 import java.util.List;
 
 
-query "products with grade 3 and less" 
-    product : Preparation( review.rating < 3 )
+query "products with grade x-ic and less" (int x) 
+    product : Preparation( review.rating < x )
 end
 
 
-query "products with grade 3 and more" 
-    product : Preparation( review.rating > 3 )
+query "products with grade x-ic and more" (int x) 
+    product : Preparation( review.rating > x )
 end
 
 
 query "products with more than x-ic comments" (int x)
     product : Preparation( review.comments.size > x)
+end
+
+query "products with less than x-ic comments" (int x)
+    product : Preparation( review.comments.size < x)
 end

@@ -22,6 +22,9 @@ import { ResultPreparationComponent } from './result-preparation/result-preparat
 import { PreparationComponent } from './preparation/preparation.component';
 import { DiaryComponent } from './diary/diary.component';
 import { DiaryResultComponent } from './diary-result/diary-result.component';
+import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { ReportsComponent } from './reports/reports.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { DiaryResultComponent } from './diary-result/diary-result.component';
     PreparationComponent,
     DiaryComponent,
     DiaryResultComponent,
+    AdminProductsComponent,
+    ReportsComponent,
+    AddProductComponent,
     
   ],
   imports: [
@@ -82,6 +88,21 @@ import { DiaryResultComponent } from './diary-result/diary-result.component';
         path: 'DiaryComponent',
         canActivate: [UserRoutes],
         component: DiaryComponent,
+      },
+      {
+        path: 'AdminProductsComponent',
+        canActivate: [AdminRoutes],
+        component: AdminProductsComponent,
+      },
+      {
+        path: 'ReportsComponent',
+        canActivate: [AdminRoutes],
+        component: ReportsComponent,
+      },
+      {
+        path: 'AddProductComponent',
+        canActivate: [AdminRoutes],
+        component: AddProductComponent,
       },
     ]),
   ],

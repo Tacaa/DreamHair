@@ -30,11 +30,6 @@ export class UserProfileComponent implements OnInit {
 
   proizvodi(){
     this.router.navigate(['/UserInputComponent']);
-    /*
-    this.regService.advices().subscribe((data:any) => {
-      console.log(data);
-    });
-    */
   }
 
 
