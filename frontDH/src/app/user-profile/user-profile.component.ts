@@ -32,6 +32,9 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['/UserInputComponent']);
   }
 
+  products(){
+    this.router.navigate(['/PreparationComponent']);
+  }
 
   diary(){
     this.router.navigate(['/DiaryComponent']);

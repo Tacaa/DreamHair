@@ -1,1 +1,234 @@
-<p>reports works!</p>
+<body>
+    <mat-toolbar class="toolbar">
+        <mat-icon>menu</mat-icon>
+        <span class="profil">IZVJESTAJI</span>
+        <span class="example-spacer"></span>
+        <mat-icon>favorite</mat-icon>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click) ="profile()">
+            <span class="material-icons">face</span>
+        </button>
+    </mat-toolbar>
+
+    <br>
+
+    <mat-card class="card">
+        <mat-grid-list cols="2" rowHeight="2:1" [gutterSize]="'10px'">
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>SLABIJE OCJENJENI</h3>
+                </mat-grid-tile-header>
+
+                <mat-card *ngIf="fleg1">
+                <form [formGroup]="less_grade_form" class="login-form">
+                    <mat-form-field appearance="legacy">
+                        <mat-label for="grade">Unesite ocjenu kao gornju granicu</mat-label>
+                        <input type="number" class="form-control" formControlName="grade" id="grade" matInput>
+                        <mat-icon matSuffix>brush</mat-icon>
+                    </mat-form-field>
+                </form>
+                <button mat-raised-button type="submit" class="option_button" id="login_button" (click)="less_grade_click()">POŠALJI</button>
+            </mat-card>
+
+            <br>
+
+                <section class="example-container mat-elevation-z8" tabindex="0" *ngIf="fleg2">
+                    <table class="tabela" mat-table [dataSource]="less_grade">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef> OCJENA </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.rating}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> KOMENTARI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.comments}} </td>
+                      </ng-container>
+    
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+
+
+            <mat-grid-tile style="background-color: #f6a494;">
+                <mat-grid-tile-header>
+                    <h3>BOLJE OCJENJENI</h3>
+                </mat-grid-tile-header>
+
+                <mat-card *ngIf="fleg3">
+                    <form [formGroup]="more_grade_form" class="login-form">
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="grade">Unesite ocjenu kao donju granicu</mat-label>
+                            <input type="number" class="form-control" formControlName="grade" id="grade" matInput>
+                            <mat-icon matSuffix>brush</mat-icon>
+                        </mat-form-field>
+                    </form>
+                    <button mat-raised-button type="submit" class="option_button" id="login_button" (click)="more_grade_click()">POŠALJI</button>
+                </mat-card>
+
+                <br>
+
+                <section class="example-container mat-elevation-z8" tabindex="0" *ngIf="fleg4">
+                    <table class="tabela" mat-table [dataSource]="more_grade">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef> OCJENA </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.rating}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> KOMENTARI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.comments}} </td>
+                      </ng-container>
+        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+
+
+
+            <mat-grid-tile style="background-color: #f6a494;">
+                <mat-grid-tile-header>
+                    <h3>SA MANJE KOMENTARA</h3>
+                </mat-grid-tile-header>
+
+                <mat-card *ngIf="fleg5">
+                    <form [formGroup]="less_comment_form" class="login-form">
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="grade">Unesite broj komentara kao gornju granicu</mat-label>
+                            <input type="number" class="form-control" formControlName="grade" id="grade" matInput>
+                            <mat-icon matSuffix>brush</mat-icon>
+                        </mat-form-field>
+                    </form>
+                    <button mat-raised-button type="submit" class="option_button" id="login_button" (click)="less_comment_click()">POŠALJI</button>
+                </mat-card>
+
+                <br>
+
+                <section class="example-container mat-elevation-z8" tabindex="0" *ngIf="fleg6">
+                    <table class="tabela" mat-table [dataSource]="less_comments">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef> OCJENA </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.rating}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> KOMENTARI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.comments}} </td>
+                      </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+
+
+
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>SA VIŠE KOMENTARA</h3>
+                </mat-grid-tile-header>
+
+                <mat-card *ngIf="fleg7">
+                    <form [formGroup]="more_comment_form" class="login-form">
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="grade">Unesite broj komentara kao donju granicu</mat-label>
+                            <input type="number" class="form-control" formControlName="grade" id="grade" matInput>
+                            <mat-icon matSuffix>brush</mat-icon>
+                        </mat-form-field>
+                    </form>
+                    <button mat-raised-button type="submit" class="option_button" id="login_button" (click)="more_comment_click()">POŠALJI</button>
+                </mat-card>
+
+                <br>
+
+                <section class="example-container mat-elevation-z8" tabindex="0" *ngIf="fleg8">
+                    <table class="tabela" mat-table [dataSource]="more_comments">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef> OCJENA </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.rating}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> KOMENTARI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.comments}} </td>
+                      </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+            
+        </mat-grid-list>
+
+        <br>
+        <button mat-raised-button type="submit" class="reset" id="abutton" (click)="resetuj()">RESETUJ</button>
+    </mat-card>
+
+    <br>
+    <br>
+    <br>
+</body>

@@ -565,14 +565,13 @@ public class HairService {
 			review.setListOfRatings(new ArrayList<String>());
 		}
 		
-		if(dto.getComment().equals("")) {
+		if(!dto.getComment().equals("")) {
 			List<String>cs = new ArrayList<String>();
 			for(int i = 0; i<review.getComments().size(); i++) {
 				cs.add(review.getComments().get(i));
 			}
 			cs.add(dto.getComment());
 			review.setComments(cs);
-			
 		}
 		
 		if(dto.getRate() != -1) {
@@ -587,8 +586,12 @@ public class HairService {
 		}
 		
 		reviewRepository.save(review);
+		Preparation prep = productsRepository.findById(dto.getPrepId());
+		prep.setReview(review);
+		
+		productsRepository.save(prep);
+		
 		RegisteredUser ru = userRepository.findRegisteredUser(user.getId());
-		System.out.println(ru.getPreparations());
 		return transformIntoReviewDTO(ru.getPreparations());
 		
 	}

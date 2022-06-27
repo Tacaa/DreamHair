@@ -18,16 +18,17 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatStepperModule } from '@angular/material/stepper';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
 imports: [MatToolbarModule, MatCardModule, MatFormFieldModule, 
         MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule, 
         MatInputModule, MatRadioModule, MatListModule, MatSnackBarModule, MatSelectModule, 
-        MatTableModule, MatSidenavModule, MatDialogModule, MatPaginatorModule, MatStepperModule],
+        MatTableModule, MatSidenavModule, MatDialogModule, MatPaginatorModule, MatStepperModule, MatGridListModule],
 exports: [MatButtonModule,MatToolbarModule, MatCardModule, MatFormFieldModule, 
         MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule, 
         MatInputModule, MatRadioModule, MatListModule, MatSnackBarModule, MatSelectModule, 
-        MatTableModule, MatSidenavModule, MatDialogModule, MatPaginatorModule, MatStepperModule]
+        MatTableModule, MatSidenavModule, MatDialogModule, MatPaginatorModule, MatStepperModule, MatGridListModule]
 })
  
 export class AngularMaterialModule { }

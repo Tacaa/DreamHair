@@ -29,4 +29,6 @@ public interface ProductsRepository extends JpaRepository<Preparation, Integer>{
 	
 	@Query("select distinct p from Preparation p where PREPARATION_TYPE = 'OIL'")
 	List<Oil>findAllOils();
+	
+	Preparation findById(int id);
 }

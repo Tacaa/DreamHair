@@ -1,1 +1,216 @@
-<p>add-product works!</p>
+<body>
+    <mat-toolbar class="toolbar">
+        <mat-icon>menu</mat-icon>
+        <span class="profil">PREPORUČUJEMO ZA VAS</span>
+        <span class="example-spacer"></span>
+        <mat-icon>favorite</mat-icon>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click) ="profile()">
+            <span class="material-icons">face</span>
+        </button>
+    </mat-toolbar>
+
+    <br>
+
+    <mat-card class="card">
+        <mat-grid-list cols="2" rowHeight="1:1" [gutterSize]="'10px'">
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>ŠAMPONI ZA SVAKODNEVNO PRANJE</h3>
+                </mat-grid-tile-header>
+                <br>
+                <mat-card class="login-card">
+                <form [formGroup]="dsForm">
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Unesite ime proizvoda</mat-label>
+                        <input type="text" class="form-control" formControlName="name" id="name" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Za koji tip tjemena je proizvod</mat-label>
+                        <mat-select id="scalpType" formControlName="scalpType">
+                            <mat-option value="GREASY">MASNO</mat-option>
+                            <mat-option value="DRY">SUHO</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko proteina sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="proteini" id="proteini" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko emolijenasa sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="emo" id="emo" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko humuktanasa sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="hum" id="hum" matInput>
+                    </mat-form-field>
+                  </form>
+                  <button mat-raised-button type="submit" class="option_button" id="login_button" (click)="dodajds()">DODAJ</button>
+                  
+                </mat-card>
+                  
+            </mat-grid-tile>
+
+
+
+            <mat-grid-tile style="background-color: #f6a494;">
+                <mat-grid-tile-header>
+                    <h3>ŠAMPONI ZA DUBINSKO PRANJE</h3>
+                </mat-grid-tile-header>
+
+                <br>
+                <mat-card class="login-card">
+                <form [formGroup]="dwsForm">
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Unesite ime proizvoda</mat-label>
+                        <input type="text" class="form-control" formControlName="name" id="name" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Za koji tip osjetljivosti tjemena je proizvod</mat-label>
+                        <mat-select id="senstitivity" formControlName="senstitivity">
+                            <mat-option value="SENSITIVE">OSJETLJIVO</mat-option>
+                            <mat-option value="NORMAL">NORMALNO</mat-option>
+                            <mat-option value="INSENSITIVE">NEOSJETLJIVO</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Kolika je jačina proizvoda</mat-label>
+                        <mat-select id="strong" formControlName="strong">
+                            <mat-option value="WEAK">SLAB</mat-option>
+                            <mat-option value="MEDIUM">SREDNJA JAČINA</mat-option>
+                            <mat-option value="STRONG">JAK</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko proteina sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="proteini" id="proteini" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko emolijenasa sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="emo" id="emo" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko humuktanasa sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="hum" id="hum" matInput>
+                    </mat-form-field>
+                    
+                  </form>
+                  <button mat-raised-button type="submit" class="option_button" id="login_button" (click)="dodajdws()">DODAJ</button>
+                </mat-card>
+            </mat-grid-tile>
+
+
+
+
+            <mat-grid-tile style="background-color: #f6a494;">
+                <mat-grid-tile-header>
+                    <h3>MASKE</h3>
+                </mat-grid-tile-header>
+                <br>
+                <mat-card class="login-card">
+                <form [formGroup]="maskForm">
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Unesite ime proizvoda</mat-label>
+                        <input type="text" class="form-control" formControlName="name" id="name" matInput>
+                    </mat-form-field>
+                    
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko proteina sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="proteini" id="proteini" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko emolijenasa sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="emo" id="emo" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko humuktanasa sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="hum" id="hum" matInput>
+                    </mat-form-field>
+                  </form>
+                
+                  <button mat-raised-button type="submit" class="option_button" id="login_button" (click)="dodajmask()">DODAJ</button>
+                </mat-card>
+                </mat-grid-tile>
+
+
+
+
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>REGENERATORI</h3>
+                </mat-grid-tile-header>
+                <br>
+                <mat-card class="login-card">
+                <form [formGroup]="regForm">
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Unesite ime proizvoda</mat-label>
+                        <input type="text" class="form-control" formControlName="name" id="name" matInput>
+                    </mat-form-field>
+            
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko proteina sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="proteini" id="proteini" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko emolijenasa sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="emo" id="emo" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Koliko humuktanasa sastojak ima, numeričke vrijednosti</mat-label>
+                        <input type="number" class="form-control" formControlName="hum" id="hum" matInput>
+                    </mat-form-field>
+                  </form>
+                 
+                 
+                  <button mat-raised-button type="submit" class="option_button" id="login_button" (click)="dodajreg()">DODAJ</button>
+                </mat-card>
+                </mat-grid-tile>
+
+
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>ULJA</h3>
+                </mat-grid-tile-header>
+                <mat-card class="login-card">
+                <form [formGroup]="oilForm">
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Unesite ime proizvoda</mat-label>
+                        <input type="text" class="form-control" formControlName="name" id="name" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="centered_form" appearance="fill">
+                        <mat-label>Za koju poroznost kose je ulje</mat-label>
+                        <mat-select id="porosity" formControlName="porosity">
+                            <mat-option value="LOW">NISKA</mat-option>
+                            <mat-option value="MEDIUM">SREDNJA</mat-option>
+                            <mat-option value="HIGH">VISOKA</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                  </form>
+                  <button mat-raised-button type="submit" class="option_button" id="login_button" (click)="dodajoil()">DODAJ</button>
+                </mat-card>
+                </mat-grid-tile>
+
+        </mat-grid-list>
+    </mat-card>
+
+    <br>
+    <br>
+    <br>
+</body>

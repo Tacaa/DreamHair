@@ -34,4 +34,8 @@ export class AdminProfileComponent implements OnInit {
     
     this.router.navigate(["/ReportsComponent"]);
   }
+
+  dodaj(){
+    this.router.navigate(["/AddProductComponent"]);
+  }
 }
