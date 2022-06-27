@@ -1,0 +1,87 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+body {
+    background-image: url("../../assets/background_pic.jpg");
+    margin: 0;
+    padding: 0;
+    height: 140vh;
+  }
+
+.profil{
+    margin-left: 10px;
+}
+
+.toolbar{
+    background-color: #e5a7a8;
+    color: whitesmoke;
+}
+
+.card{
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.example-container {
+    margin-top: 45px;
+    height: 260px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 620px;
+    
+  }
+
+  table  {
+    border: 1px solid whitesmoke;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  table tr:nth-child(odd) {
+    background-color: #fef3ef;
+  }
+  table tr:nth-child(even) {
+    background-color: white;
+  }
+
+  th{
+    background-color: white
+    ;
+  }
+
+  h3{
+    color: whitesmoke; 
+    font-family: 'Lucida Handwriting';
+  }
+
+
+  mat-form-field{
+    color: #FA8072;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+  }
+
+  
+  .option_button{
+    background-color: #FA8072;
+    margin-left: 20%;
+    text-align: center;
+    color: whitesmoke; 
+    font-family: 'Trocchi', serif;
+    font-size: 20px;
+  }
+
+
+  .login-card {
+    display: block;
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 55%;
+  }

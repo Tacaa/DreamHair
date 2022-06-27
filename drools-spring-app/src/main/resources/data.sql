@@ -219,8 +219,8 @@ insert into preparations_dws (preparations_id, dws_id) values (1, 58);
 insert into preparations_dws (preparations_id, dws_id) values (1, 63);
 
 
-insert into diary (hair_wash, hair_growth, hair_state, comments) values ('1,2,2,3,3,1', '1,2,1.5', '2,3,4', 'Krecem sa njegom,Kosa mi se poboljsala,Kosa je neprepoznatljiva');
-insert into diary (hair_wash, hair_growth, hair_state, comments) values ('2,3,2,1,2,3,2,3,1', '1.2,1.7,2,1,2,1.5', '0,1,2,2,3,4', 'Kosa mi je odvratna,Jos uvijek je suha,Krecem sa njegom,Ne vidim neke rezultate,Kosa mi se poboljsala,Kosa je neprepoznatljiva');
+insert into diary (hair_wash, hair_growth, hair_state, comments) values ('2021.06.15,2021.06.18,2021.06.21,2021.06.22,2021.06.25,2021.06.26', '1,2,1.5', 'LOSE,NORMALNA,DOBRO', 'Krecem sa njegom,Kosa mi se poboljsala,Kosa je neprepoznatljiva');
+insert into diary (hair_wash, hair_growth, hair_state, comments) values ('2021.06.08,2021.06.10,2021.06.15,2021.06.18,2021.06.21,2021.06.22,2021.06.25,2021.06.26,2021.06.27', '1.2,1.7,2,1,2,1.5', 'LOSE,LOSE,NORMALNA,NORMALNA,DOBRA,DOBRA,ODLICNA', 'Kosa mi je odvratna,Jos uvijek je suha,Krecem sa njegom,Ne vidim neke rezultate,Kosa mi se poboljsala,Kosa je neprepoznatljiva');
 
 insert into advice (score) values (100);
 insert into advice (score) values (600);

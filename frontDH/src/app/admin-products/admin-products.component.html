@@ -1,1 +1,212 @@
-<p>admin-products works!</p>
+<body>
+    <mat-toolbar class="toolbar">
+        <mat-icon>menu</mat-icon>
+        <span class="profil">SVI PROIZVODI</span>
+        <span class="example-spacer"></span>
+        <mat-icon>favorite</mat-icon>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click) ="profile()">
+            <span class="material-icons">face</span>
+        </button>
+    </mat-toolbar>
+
+    <br>
+
+    <mat-card class="card">
+        <mat-grid-list cols="2" rowHeight="2:1" [gutterSize]="'10px'">
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>ŠAMPONI ZA SVAKODNEVNO PRANJE</h3>
+                </mat-grid-tile-header>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table class="tabela" mat-table [dataSource]="ds_dataSource">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef> OCJENA </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.rating}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> KOMENTARI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.comments}} </td>
+                      </ng-container>
+    
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+
+
+            <mat-grid-tile style="background-color: #f6a494;">
+                <mat-grid-tile-header>
+                    <h3>ŠAMPONI ZA DUBINSKO PRANJE</h3>
+                </mat-grid-tile-header>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table class="tabela" mat-table [dataSource]="dws_dataSource">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef> OCJENA </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.rating}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> KOMENTARI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.comments}} </td>
+                      </ng-container>
+        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+
+
+
+            <mat-grid-tile style="background-color: #f6a494;">
+                <mat-grid-tile-header>
+                    <h3>MASKE</h3>
+                </mat-grid-tile-header>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table class="tabela" mat-table [dataSource]="mask_dataSource">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef> OCJENA </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.rating}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> KOMENTARI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.comments}} </td>
+                      </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+
+
+
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>REGENERATORI</h3>
+                </mat-grid-tile-header>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table class="tabela" mat-table [dataSource]="reg_dataSource">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef> OCJENA </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.rating}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> KOMENTARI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.comments}} </td>
+                      </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>ULJA</h3>
+                </mat-grid-tile-header>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table class="tabela" mat-table [dataSource]="oil_dataSource">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef> OCJENA </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.rating}} </td>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> KOMENTARI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.review.comments}} </td>
+                      </ng-container>
+                
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+            
+        </mat-grid-list>
+    </mat-card>
+
+    <br>
+    <br>
+    <br>
+</body>

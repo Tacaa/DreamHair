@@ -21,7 +21,6 @@ import { UserInputComponent } from './user-input/user-input.component';
 import { ResultPreparationComponent } from './result-preparation/result-preparation.component';
 import { PreparationComponent } from './preparation/preparation.component';
 import { DiaryComponent } from './diary/diary.component';
-import { DiaryResultComponent } from './diary-result/diary-result.component';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
 import { ReportsComponent } from './reports/reports.component';
 import { AddProductComponent } from './add-product/add-product.component';
@@ -38,7 +37,6 @@ import { AddProductComponent } from './add-product/add-product.component';
     ResultPreparationComponent,
     PreparationComponent,
     DiaryComponent,
-    DiaryResultComponent,
     AdminProductsComponent,
     ReportsComponent,
     AddProductComponent,

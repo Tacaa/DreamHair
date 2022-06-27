@@ -12,6 +12,10 @@ import org.kie.api.runtime.rule.QueryResultsRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import sbnz.integracija.example.dto.DSDTO;
+import sbnz.integracija.example.dto.DWSDTO;
+import sbnz.integracija.example.dto.MaskRegDTO;
+import sbnz.integracija.example.dto.OilDTO;
 import sbnz.integracija.example.dto.OnePreparationDTO;
 import sbnz.integracija.example.dto.ReviewDTO;
 import sbnz.integracija.example.dto.ReviewPreparationsDTO;
@@ -19,9 +23,12 @@ import sbnz.integracija.example.facts.DailyShampoo;
 import sbnz.integracija.example.facts.DeepWashShampoo;
 import sbnz.integracija.example.facts.Mask;
 import sbnz.integracija.example.facts.Oil;
+import sbnz.integracija.example.facts.PehValues;
 import sbnz.integracija.example.facts.Preparation;
 import sbnz.integracija.example.facts.Preparations;
 import sbnz.integracija.example.facts.Regenerator;
+import sbnz.integracija.example.facts.Review;
+import sbnz.integracija.example.repositories.PehValuesRepository;
 import sbnz.integracija.example.repositories.PreparationsRepository;
 import sbnz.integracija.example.repositories.ProductsRepository;
 
@@ -30,6 +37,9 @@ public class AdminService {
 	
 	@Autowired
 	ProductsRepository productsRepository;
+	
+	@Autowired
+	PehValuesRepository pehValuesRepository;
 	
 	private static Logger log = LoggerFactory.getLogger(UserService.class);
 	private final KieContainer kieContainer;
@@ -370,4 +380,87 @@ public class AdminService {
 		
 		return list;
 	}
+	
+	
+	public void addOil(OilDTO dto) {
+		Review r = new Review();
+		Oil oil = new Oil();
+		oil.setName(dto.getName());
+		oil.setType(dto.getType());
+		oil.setReview(r);
+		productsRepository.save(oil);
+	}
+	
+	
+	public void addMask(MaskRegDTO dto) {
+		PehValues peh = new PehValues();
+		peh.setEmollientsPercentage(dto.getEmollientsPercentage());
+		peh.setHumectansPercentage(dto.getHumectansPercentage());
+		peh.setProteinsPercentage(dto.getProteinsPercentage());
+		
+		pehValuesRepository.save(peh);
+		
+		Review r = new Review();
+		Mask mask = new Mask();
+		mask.setName(dto.getName());
+		mask.setPehValues(peh);
+		mask.setReview(r);
+		productsRepository.save(mask);
+	}
+	
+	
+	public void addReg(MaskRegDTO dto) {
+		PehValues peh = new PehValues();
+		peh.setEmollientsPercentage(dto.getEmollientsPercentage());
+		peh.setHumectansPercentage(dto.getHumectansPercentage());
+		peh.setProteinsPercentage(dto.getProteinsPercentage());
+		
+		pehValuesRepository.save(peh);
+		
+		
+		Review r = new Review();
+		Regenerator reg = new Regenerator();
+		reg.setName(dto.getName());
+		reg.setPehValues(peh);
+		reg.setReview(r);
+		productsRepository.save(reg);
+	}
+	
+	
+	public void addDS(DSDTO dto) {
+		PehValues peh = new PehValues();
+		peh.setEmollientsPercentage(dto.getEmollientsPercentage());
+		peh.setHumectansPercentage(dto.getHumectansPercentage());
+		peh.setProteinsPercentage(dto.getProteinsPercentage());
+		pehValuesRepository.save(peh);
+		
+		DailyShampoo ds = new DailyShampoo();
+		ds.setName(dto.getName());
+		ds.setPehValues(peh);
+		ds.setScalpType(dto.getScalpType());
+		ds.setReview(new Review());
+		
+		productsRepository.save(ds);
+	}
+	
+	
+	public void addDWS(DWSDTO dto) {
+		PehValues peh = new PehValues();
+		peh.setEmollientsPercentage(dto.getEmollientsPercentage());
+		peh.setHumectansPercentage(dto.getHumectansPercentage());
+		peh.setProteinsPercentage(dto.getProteinsPercentage());
+		pehValuesRepository.save(peh);
+		
+		DeepWashShampoo ds = new DeepWashShampoo();
+		ds.setName(dto.getName());
+		ds.setPehValues(peh);
+		ds.setScalpSensitivity(dto.getScalpSensitivity());
+		ds.setShampooIntensity(dto.getShampooIntensity());
+		ds.setReview(new Review());
+		
+		productsRepository.save(ds);
+	}
+	
+	
+	
 }

@@ -61,7 +61,7 @@ export class UserInputComponent implements OnInit {
   }
 
   profile(){
-
+    this.router.navigate(['/UserProfileComponent']);
   }
 
   pokupi(){

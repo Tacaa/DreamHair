@@ -46,41 +46,53 @@ public class DiaryService {
 			userRepository.save(ru);
 		}
 		
-		if(!dto.getHairWash().equals("")) {
-			List<String>list = new ArrayList<String>();
-			for(int i = 0; i<d.getHairWash().size(); i++) {
-				list.add(d.getHairWash().get(i));
+		if(dto.getHairWash() != null) {
+			if(!dto.getHairWash().equals("")) {
+				List<String>list = new ArrayList<String>();
+				for(int i = 0; i<d.getHairWash().size(); i++) {
+					list.add(d.getHairWash().get(i));
+				}
+				list.add(dto.getHairWash());
+				d.setHairWash(list);
 			}
-			list.add(dto.getHairWash());
-			d.setHairWash(list);
 		}
 		
-		if(!dto.getHairGrowth().equals("")) {
-			List<String>list = new ArrayList<String>();
-			for(int i = 0; i<d.getHairGrowth().size(); i++) {
-				list.add(d.getHairGrowth().get(i));
+		
+		if(dto.getHairGrowth() != null) {
+			if(!dto.getHairGrowth().equals("")) {
+				List<String>list = new ArrayList<String>();
+				for(int i = 0; i<d.getHairGrowth().size(); i++) {
+					list.add(d.getHairGrowth().get(i));
+				}
+				list.add(dto.getHairGrowth());
+				d.setHairGrowth(list);
 			}
-			list.add(dto.getHairGrowth());
-			d.setHairGrowth(list);
 		}
 		
-		if(!dto.getHairState().equals("")) {
-			List<String>list = new ArrayList<String>();
-			for(int i = 0; i<d.getHairState().size(); i++) {
-				list.add(d.getHairState().get(i));
+		
+		if(dto.getHairState() != null) {
+			if(!dto.getHairState().equals("")) {
+				List<String>list = new ArrayList<String>();
+				for(int i = 0; i<d.getHairState().size(); i++) {
+					list.add(d.getHairState().get(i));
+				}
+				list.add(dto.getHairState());
+				d.setHairState(list);
 			}
-			list.add(dto.getHairState());
-			d.setHairState(list);
+			
 		}
 		
-		if(!dto.getComment().equals("")) {
-			List<String>list = new ArrayList<String>();
-			for(int i = 0; i<d.getComments().size(); i++) {
-				list.add(d.getComments().get(i));
+		if(dto.getComment() != null) {
+			if(!dto.getComment().equals("")) {
+				List<String>list = new ArrayList<String>();
+				for(int i = 0; i<d.getComments().size(); i++) {
+					list.add(d.getComments().get(i));
+				}
+				list.add(dto.getComment());
+				d.setComments(list);
 			}
-			list.add(dto.getComment());
-			d.setComments(list);
 		}
+		
 		
 		ru.setDiary(d);
 		userRepository.save(ru);

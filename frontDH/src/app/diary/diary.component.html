@@ -1,2 +1,160 @@
-<p>diary works!</p>
-<button (click)="klik()">KLIK</button>
+<body>
+    <mat-toolbar class="toolbar">
+        <mat-icon>menu</mat-icon>
+        <span class="profil">VAŠ DNEVNIK</span>
+        <span class="example-spacer"></span>
+        <mat-icon>favorite</mat-icon>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click) ="profile()">
+            <span class="material-icons">face</span>
+        </button>
+    </mat-toolbar>
+
+    <br>
+
+    <mat-card class="card">
+        <mat-grid-list cols="4" rowHeight="1:1" [gutterSize]="'10px'">
+            
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>DATUMI PRANJA KOSE</h3>
+                </mat-grid-tile-header>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table class="tabela" mat-table [dataSource]="wash_dataSource">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Datumi</th>
+                        <td mat-cell *matCellDef="let element"> {{element}} </td>
+                      </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+            
+            <mat-grid-tile style="background-color: #f6a494;">
+                <mat-grid-tile-header>
+                    <h3>MJERENJA RASTA KOSE</h3>
+                </mat-grid-tile-header>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table class="tabela" mat-table [dataSource]="mjerenje_dataSource">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Mjerenje </th>
+                        <td mat-cell *matCellDef="let element"> {{element}} </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+
+
+            <mat-grid-tile style="background-color: #e5a7a8;">
+                <mat-grid-tile-header>
+                    <h3>STANJA KOSE</h3>
+                </mat-grid-tile-header>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table class="tabela" mat-table [dataSource]="stanja_dataSource">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Stanja </th>
+                        <td mat-cell *matCellDef="let element">{{element}} </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+
+            <mat-grid-tile style="background-color: #f6a494;">
+                <mat-grid-tile-header>
+                    <h3>KOMENTARI</h3>
+                </mat-grid-tile-header>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table class="tabela" mat-table [dataSource]="komentari_dataSource">
+                      <!-- Position Column -->
+                      <ng-container class="position" matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Br.</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}.</td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Komentari </th>
+                        <td mat-cell *matCellDef="let element"> {{element}} </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </section>
+            </mat-grid-tile>
+
+        </mat-grid-list>
+    </mat-card>
+
+    <br>
+
+    <mat-card class="login-card">
+        <mat-card-header>
+            <mat-card-title class="title">POPUNI ME KAD STIGNEŠ...</mat-card-title>
+        </mat-card-header>
+        <br>
+        <mat-card-content>
+            <div class="main-div">
+                <form [formGroup]="form" class="login-form">
+                    <mat-form-field appearance="legacy">
+                        <mat-label for="pranje">Unesite datum posljednjeg pranja...</mat-label>
+                        <input type="date" class="form-control" formControlName="pranje" id="pranje" matInput>
+                        <mat-icon matSuffix>brush</mat-icon>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label for="mjerenje">Unesite posljednje mjerenje kose...</mat-label>
+                        <input type="text" class="form-control" formControlName="mjerenje" id="mjerenje" matInput>
+                        <mat-icon matSuffix>brush</mat-icon>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label for="opis">Unesite opis kose...</mat-label>
+                        <input type="text" class="form-control" formControlName="opis" id="opis" matInput>
+                        <mat-icon matSuffix>brush</mat-icon>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label for="komentar">Možete napisati nekakav komentar...</mat-label>
+                        <input type="text" class="form-control" formControlName="komentar" id="komentar" matInput>
+                        <mat-icon matSuffix>brush</mat-icon>
+                    </mat-form-field>
+                </form>
+            </div>
+            <br>
+            <button mat-raised-button type="submit" class="option_button" id="abutton" (click)="salji()">POŠALJI</button>
+        </mat-card-content>
+    </mat-card>
+
+</body>
